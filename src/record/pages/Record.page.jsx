@@ -2,7 +2,15 @@ import React from 'react'
 import { useRecord } from '../hooks/useRecord';
 
 export const RecordPage = () => {
-  const { status, startRecording, stopRecording, mediaBlobUrl, sendVideo } = useRecord();
+  const {
+    status,
+    mediaBlobUrl,
+    startRecording,
+    stopRecording,
+    sendVideo,
+    handleFileChange,
+    handleSubmit
+  } = useRecord();
 
   return (
     <div>
@@ -10,6 +18,15 @@ export const RecordPage = () => {
       {status === 'recording' && <button onClick={stopRecording}>Stop Recording</button>}
       {mediaBlobUrl && <audio src={mediaBlobUrl} controls autoPlay />}
       {status === 'stopped' && <button onClick={sendVideo}>Send Video to Server</button>}
+
+      <br/>
+      <br/>
+      <br/>
+
+      <form onSubmit={handleSubmit}>
+        <input multiple={false} type="file" onChange={handleFileChange} />
+        <button type="submit">Subir</button>
+      </form>
     </div>
   )
 }
