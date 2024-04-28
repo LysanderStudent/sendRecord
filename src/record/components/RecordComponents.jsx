@@ -1,5 +1,5 @@
-import { Button, Card, Space, Typography } from 'antd';
 import React from 'react';
+import { Button, Card, Space, Typography, Row, Col } from 'antd';
 import { BsFillMicFill } from 'react-icons/bs';
 import { useRecord } from '../hooks/useRecord';
 
@@ -18,13 +18,15 @@ export const RecordComponents = () => {
       <Space direction='vertical' size='small' align='center'>
         <BsFillMicFill size={100} />
 
-        <Button onClick={handleActionRecord} level={3}>{message}</Button>
-        {status === 'stopped' &&
-          <>
-            <audio src={mediaBlobUrl} controls autoPlay><track kind='captions'></track></audio>
-            <Button onClick={sendVideo}>ENVIAR GRABACION</Button>
-          </>
-        }
+        <Row gutter={5}>
+          <Col><Button onClick={handleActionRecord} level={3}>{message}</Button></Col>
+          {status === 'stopped' &&
+            <>
+              <Col><audio src={mediaBlobUrl} controls autoPlay><track kind='captions'></track></audio></Col>
+              <Col><Button onClick={sendVideo}>ENVIAR GRABACION</Button></Col>
+            </>
+          }
+        </Row>
 
         <Text>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo, facere harum fuga nobis ex, dicta officia perspiciatis velit iste eum consequuntur. Dolor voluptas tenetur ipsam sit voluptate ratione consectetur sequi.

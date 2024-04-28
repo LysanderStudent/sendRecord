@@ -24,9 +24,9 @@ export const useRecord = () => {
     const socket = io('http://localhost:3010/transcription');
 
     const handleActionRecord = () => {
-        if (message === 'INICIAR GRABACION') {
+        if (message !== 'DETENER GRABACION') {
             startRecording();
-        } else if (message === 'DETENER GRABACION') {
+        } else {
             stopRecording();
         }
     }

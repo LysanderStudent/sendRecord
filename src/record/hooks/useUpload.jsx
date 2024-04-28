@@ -16,7 +16,7 @@ export const useUpload = () => {
       return;
     }
 
-    socket.emit('recorderData', file);
+    // socket.emit('recorderData', file);
   };
 
   return {
