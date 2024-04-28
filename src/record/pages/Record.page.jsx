@@ -9,7 +9,7 @@ export const RecordPage = () => {
     stopRecording,
     sendVideo,
     handleFileChange,
-    handleSubmit
+    handleUploadFile
   } = useRecord();
 
   return (
@@ -23,7 +23,7 @@ export const RecordPage = () => {
       <br/>
       <br/>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleUploadFile}>
         <input multiple={false} type="file" onChange={handleFileChange} />
         <button type="submit">Subir</button>
       </form>

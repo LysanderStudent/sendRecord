@@ -1,16 +1,21 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useReactMediaRecorder } from 'react-media-recorder';
 import io from 'socket.io-client';
 
 export const useRecord = () => {
-    const [file, setFile] = useState(null);
+    const [message, setMessage] = useState('INICIAR GRABACION');
 
-    const { status, startRecording, stopRecording, mediaBlobUrl } = useReactMediaRecorder({
+    const { status, mediaBlobUrl, startRecording, stopRecording } = useReactMediaRecorder({
         audio: true,
     });
 
     useEffect(() => {
+        switch (status) {
+            case 'idle': setMessage('INICIAR GRABACION'); break;
+            case 'recording': setMessage('DETENER GRABACION'); break;
+            case 'stopped': setMessage('COMENZAR OTRA GRABACION'); break;
+        }
+
         if (status === 'stopped') {
             sendVideo();
         }
@@ -18,42 +23,32 @@ export const useRecord = () => {
 
     const socket = io('http://localhost:3010/transcription');
 
+    const handleActionRecord = () => {
+        if (message === 'INICIAR GRABACION') {
+            startRecording();
+        } else if (message === 'DETENER GRABACION') {
+            stopRecording();
+        }
+    }
+
     const sendVideo = async () => {
         await fetch(mediaBlobUrl)
             .then(res => res.blob())
             .then(blob => {
                 try {
                     console.log({ blob })
-                    socket.emit('recorderData', blob);
+                    // socket.emit('recorderData', blob);
                 } catch (error) {
                     console.error({ error })
                 }
             }).catch(err => console.error({ err }))
     }
 
-    const handleFileChange = (e) => {
-        setFile(e.target.files[0]);
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (!file) {
-            alert("Por favor, selecciona un archivo.");
-            return;
-        }
-
-        console.log({ file });
-        const res = socket.emit('recorderData', file);
-        console.log({ res });
-    };
-
     return {
         status,
-        startRecording,
-        stopRecording,
         mediaBlobUrl,
+        message,
+        handleActionRecord,
         sendVideo,
-        handleFileChange,
-        handleSubmit
     }
 }
