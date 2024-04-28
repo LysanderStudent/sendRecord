@@ -1,11 +1,11 @@
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
-import { RecordPage } from '../record/pages/Record.page'
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';0
+import { BasePage } from './BasePage';
 
 export const AppRouter = () => {
     return (
         <Routes>
-            <Route path='/' element={<RecordPage />} />
+            <Route path='/*' element={<BasePage />} />
         </Routes>
     )
 }

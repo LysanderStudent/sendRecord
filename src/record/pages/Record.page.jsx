@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useRecord } from '../hooks/useRecord';
 
 export const RecordPage = () => {
@@ -16,7 +16,7 @@ export const RecordPage = () => {
     <div>
       {status !== 'recording' && <button onClick={startRecording}>Start Recording</button>}
       {status === 'recording' && <button onClick={stopRecording}>Stop Recording</button>}
-      {mediaBlobUrl && <audio src={mediaBlobUrl} controls autoPlay />}
+      {mediaBlobUrl && <audio src={mediaBlobUrl} controls autoPlay><track kind='captions'></track></audio>}
       {status === 'stopped' && <button onClick={sendVideo}>Send Video to Server</button>}
 
       <br/>
