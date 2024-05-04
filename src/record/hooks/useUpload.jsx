@@ -1,43 +1,33 @@
 import { message } from 'antd';
-import { useEffect, useState } from 'react';
 import { getSocket } from '../../hooks/socketService';
+import { useState } from 'react';
 
 export const useUpload = () => {
   const socket = getSocket();
-  const [file, setFile] = useState();
-
-  useEffect(() => {
-    if (file) {
-      socket.emit('transcript');
-      setFile();
-    }
-  }, [file]);
+  const [progress, setProgress] = useState(0);
 
   const onChange = (info) => {
     const { status } = info.file;
 
     if (status === 'done') {
-      setFile(info.file);
       message.success(`${info.file.name} guardado del lado del cliente satisfactoriamente`);
-      info.fileList.pop();
     } else if (status === 'error') {
       message.error(`${info.file.name} algo falló al cargar el archivo`);
     }
   }
 
-  const handleAction = (options) => {
-    const { file, onProgress, onSuccess, onError } = options;
+  const handleAction = ({ file }) => {
     const reader = new FileReader();
 
     reader.onprogress = (e) => {
       if (e.lengthComputable) {
-        const percent = (e.loaded / e.total) * 100;
-        onProgress({ percent });
+        const percent = parseInt((e.loaded / e.total) * 100);
+        setProgress(percent);
       }
     };
 
     reader.onload = (e) => {
-      onSuccess();
+      setProgress(0);
       socket.emit('uploadFileToServer', e.target.result);
     };
 
@@ -49,15 +39,13 @@ export const useUpload = () => {
     reader.readAsArrayBuffer(file);
   };
 
-  socket.on('uploadFileError', (data) => {
-    message.error(data.message);
+  socket.on('fileUploaded', () => {
+    message.success("Archivo guardado exitosamente. Iniciando transcripción...");
+    //     socket.emit('transcript');
   });
 
-  socket.on('audioTranscripted', (data) => {
-    console.log(data);
-  })
-
   return {
+    progress,
     handleAction,
     onChange,
   }

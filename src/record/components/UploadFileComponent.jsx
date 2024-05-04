@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Space, Typography, Upload } from 'antd';
+import { Card, Progress, Space, Typography, Upload } from 'antd';
 import { BsFileEarmarkMusicFill } from 'react-icons/bs';
 import { useUpload } from '../hooks/useUpload';
 
@@ -8,6 +8,7 @@ export const UploadFileComponent = () => {
   const { Dragger } = Upload;
 
   const {
+    progress,
     onChange,
     handleAction,
   } = useUpload();
@@ -17,12 +18,10 @@ export const UploadFileComponent = () => {
       <Space direction='vertical' size='small' align='center'>
 
         <Dragger
-          // Eliminamos el `action` para evitar la solicitud HTTP
-          action={null} // No se realiza una solicitud HTTP
-          customRequest={handleAction} // El envío se realiza a través del socket
+          customRequest={handleAction}
           multiple={false}
           onChange={onChange}
-          // showUploadList={false}
+          showUploadList={false}
         >
           <p className="ant-upload-drag-icon">
             <BsFileEarmarkMusicFill size={100} />
@@ -33,6 +32,7 @@ export const UploadFileComponent = () => {
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo, facere harum fuga nobis ex, dicta officia perspiciatis velit iste eum consequuntur. Dolor voluptas tenetur ipsam sit voluptate ratione consectetur sequi.
           </Text>
 
+          {progress > 0 && <Progress percent={progress} />}
         </Dragger>
 
       </Space>
