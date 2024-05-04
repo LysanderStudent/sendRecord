@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useReactMediaRecorder } from 'react-media-recorder';
-import io from 'socket.io-client';
+import { getSocket } from '../../hooks/socketService';
 
 export const useRecord = () => {
+    const socket = getSocket();
     const [message, setMessage] = useState('INICIAR GRABACION');
 
     const { status, mediaBlobUrl, startRecording, stopRecording } = useReactMediaRecorder({
@@ -17,11 +18,9 @@ export const useRecord = () => {
         }
 
         if (status === 'stopped') {
-            sendVideo();
+            sendAudio();
         }
     }, [status]);
-
-    const socket = io('http://localhost:3010/transcription');
 
     const handleActionRecord = () => {
         if (message !== 'DETENER GRABACION') {
@@ -31,13 +30,13 @@ export const useRecord = () => {
         }
     }
 
-    const sendVideo = async () => {
+    const sendAudio = async () => {
         await fetch(mediaBlobUrl)
             .then(res => res.blob())
             .then(blob => {
                 try {
                     console.log({ blob })
-                    // socket.emit('recorderData', blob);
+                    socket.emit('uploadFileToServer', blob)
                 } catch (error) {
                     console.error({ error })
                 }
@@ -49,6 +48,6 @@ export const useRecord = () => {
         mediaBlobUrl,
         message,
         handleActionRecord,
-        sendVideo,
+        sendAudio,
     }
 }

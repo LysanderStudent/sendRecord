@@ -10,7 +10,7 @@ export const RecordComponents = () => {
     message,
     mediaBlobUrl,
     handleActionRecord,
-    sendVideo,
+    sendAudio,
   } = useRecord();
 
   return (
@@ -23,7 +23,7 @@ export const RecordComponents = () => {
           {status === 'stopped' &&
             <>
               <Col><audio src={mediaBlobUrl} controls autoPlay><track kind='captions'></track></audio></Col>
-              <Col><Button onClick={sendVideo}>ENVIAR GRABACION</Button></Col>
+              <Col><Button onClick={sendAudio}>ENVIAR GRABACION</Button></Col>
             </>
           }
         </Row>
