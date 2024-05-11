@@ -1,7 +1,7 @@
-import io from 'socket.io-client';
 import { message } from 'antd';
+import io from 'socket.io-client';
 
-const socket = io('http://localhost:3010');
+let socket;
 
 const setupSocketListeners = () => {
     socket.on('uploadFileError', (data) => {
@@ -12,15 +12,16 @@ const setupSocketListeners = () => {
         console.log("Transcripción recibida:", data.text);
     });
 
-    socket.on('fileUploaded', () => {
-        message.success("Archivo guardado exitosamente. Iniciando transcripción...");
-        //     socket.emit('transcript');
+    socket.on('fileUploaded', (data) => {
+        message.success(data.message);
+        socket.emit('transcript');
     });
-
-    return socket;
 };
 
 export const getSocket = () => {
-    setupSocketListeners();
+    if (!socket) {
+        socket = io('http://localhost:3010');
+        setupSocketListeners();
+    }
     return socket;
 };

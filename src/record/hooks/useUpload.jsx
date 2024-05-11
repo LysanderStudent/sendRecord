@@ -3,8 +3,8 @@ import { getSocket } from '../../hooks/socketService';
 import { useState } from 'react';
 
 export const useUpload = () => {
-  const socket = getSocket();
   const [progress, setProgress] = useState(0);
+  const socket = getSocket();
 
   const onChange = (info) => {
     const { status } = info.file;
@@ -38,11 +38,6 @@ export const useUpload = () => {
 
     reader.readAsArrayBuffer(file);
   };
-
-  socket.on('fileUploaded', () => {
-    message.success("Archivo guardado exitosamente. Iniciando transcripción...");
-    //     socket.emit('transcript');
-  });
 
   return {
     progress,
