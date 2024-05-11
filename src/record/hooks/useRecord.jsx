@@ -33,14 +33,8 @@ export const useRecord = () => {
     const sendAudio = async () => {
         await fetch(mediaBlobUrl)
             .then(res => res.blob())
-            .then(blob => {
-                try {
-                    console.log({ blob })
-                    socket.emit('uploadFileToServer', blob)
-                } catch (error) {
-                    console.error({ error })
-                }
-            }).catch(err => console.error({ err }))
+            .then(blob => socket.emit('uploadFileToServer', blob))
+            .catch(err => console.error({ err }))
     }
 
     return {
