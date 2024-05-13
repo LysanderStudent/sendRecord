@@ -1,37 +1,42 @@
-import React from 'react';
-import { Button, Card, Space, Typography, Row, Col } from 'antd';
-import { BsFillMicFill } from 'react-icons/bs';
-import { useRecord } from '../hooks/useRecord';
+import React from "react";
+import { Button, Card, Space, Typography, Row, Col } from "antd";
+import { BsFillMicFill } from "react-icons/bs";
+import { useRecord } from "../hooks/useRecord";
 
-export const RecordComponents = () => {
+export const RecordComponents = ({ textRecord }) => {
   const { Text } = Typography;
-  const {
-    status,
-    message,
-    mediaBlobUrl,
-    handleActionRecord,
-    sendAudio,
-  } = useRecord();
+  const { status, message, mediaBlobUrl, handleActionRecord, sendAudio } =
+    useRecord(textRecord?.status);
 
   return (
-    <Card style={{ backgroundColor: '#EAEAEA', textAlign: 'center', height: 350 }}>
-      <Space direction='vertical' align='center'>
+    <Card
+      style={{ backgroundColor: "#EAEAEA", textAlign: "center", height: 350 }}
+    >
+      <Space direction="vertical" align="center">
         <BsFillMicFill size={100} />
 
         <Row gutter={5}>
-          <Col><Button onClick={handleActionRecord} level={3}>{message}</Button></Col>
-          {status === 'stopped' &&
+          <Col>
+            <Button onClick={handleActionRecord} level={3}>
+              {message}
+            </Button>
+          </Col>
+          {status === "stopped" && (
             <>
-              <Col><audio src={mediaBlobUrl} controls autoPlay><track kind='captions'></track></audio></Col>
-              <Col><Button onClick={sendAudio}>ENVIAR GRABACION</Button></Col>
+              <Col>
+                <audio src={mediaBlobUrl} controls autoPlay>
+                  <track kind="captions"></track>
+                </audio>
+              </Col>
+              <Col>
+                <Button onClick={sendAudio}>{textRecord?.sendRecord}</Button>
+              </Col>
             </>
-          }
+          )}
         </Row>
 
-        <Text italic>
-          Haz clic aquí para comenzar a grabar audio directamente desde tu dispositivo. Esta opción activará el micrófono de tu dispositivo para que puedas empezar a grabar.
-        </Text>
+        <Text italic>{textRecord?.description}</Text>
       </Space>
     </Card>
-  )
-}
+  );
+};

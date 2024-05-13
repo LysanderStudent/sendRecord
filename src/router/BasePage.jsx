@@ -1,12 +1,13 @@
-import React from 'react';
-import { HeaderComponent } from '../ui/components/HeaderComponent';
-import { ContentComponent } from '../ui/components/ContentComponent';
+import React from "react";
+import { HeaderComponent } from "../ui/components/HeaderComponent";
+import { ContentComponent } from "../ui/components/ContentComponent";
 
 export const BasePage = () => {
-    return (
-        <>
-            <HeaderComponent />
-            <ContentComponent />
-        </>
-    )
-}
+  const projectName = "[Nombre del proyecto]";
+  return (
+    <>
+      <HeaderComponent projectName={projectName} />
+      <ContentComponent projectName={projectName} />
+    </>
+  );
+};

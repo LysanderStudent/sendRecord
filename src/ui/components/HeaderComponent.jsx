@@ -2,14 +2,14 @@ import React from 'react';
 import { Layout, Typography } from 'antd';
 import { headerStyle, textStyle } from '../css/styles';
 
-export const HeaderComponent = () => {
+export const HeaderComponent = ({projectName}) => {
     const { Header } = Layout;
     const { Text } = Typography;
 
     return (
         <Header style={headerStyle}>
             <Text style={textStyle}>
-                Nombre Del Proyecto
+                {projectName}
             </Text>
         </Header>
     )

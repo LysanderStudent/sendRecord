@@ -1,45 +1,92 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 
-export const TextsDisplay = (language = 'es') => {
-    const projectName = '[Nombre del proyecto]';
-    const [firstParagraph, setFirstParagraph] = useState();
-    const [secondParagraph, setSecondParagraph] = useState();
-    const [thirdParagraph, setThirdParagraph] = useState();
+export const TextsDisplay = (projectName) => {
+  const [firstParagraph, setFirstParagraph] = useState();
+  const [secondParagraph, setSecondParagraph] = useState();
+  const [thirdParagraph, setThirdParagraph] = useState();
+  const [record, setRecord] = useState();
+  const [upload, setUpload] = useState();
 
-    useEffect(() => {
-        if (language === 'es') {
-            setFirstParagraph(`Bienvenido a ${projectName}, tu herramienta especializada en la transcripción de audio a texto para podcasts. Con ${projectName}, convertir tu contenido auditivo en texto nunca ha sido tan fácil. Nuestra plataforma ofrece una manera sencilla y eficiente de transcribir tus archivos de audio en texto escrito, lo que te permite acceder al contenido de tus podcasts de una forma más accesible y versátil.`)
+  useEffect(() => {
+    changeTextLanguage("es");
+  }, []);
 
-            setSecondParagraph(`
-            ¿Cómo funciona? Es simple:
-            \n
-            1.- Sube tu archivo de audio: Si tienes grabaciones de audio que necesitas transcribir, simplemente selecciona la opción 'Subir grabacion' y carga tu contenido. Nuestra plataforma se encargará del resto.
-            \n
-            2.- Recibe la transcripción: Una vez que hayas subido tu archivo de audio, ${projectName} trabajará diligentemente para transcribir el contenido a texto. En poco tiempo, recibirás la transcripción completa y precisa de tu audio.
-            `)
-
-            setThirdParagraph(`Con ${projectName}, obtén transcripciones precisas y de calidad para tus podcasts, facilitando la edición, búsqueda y accesibilidad de tu contenido auditivo. Únete a nuestra comunidad de creadores de podcasts hoy mismo y lleva tus proyectos auditivos al siguiente nivel con ${projectName}.`)
-        } else if (language === 'en') {
-            setFirstParagraph(`Welcome to ${projectName}, your specialized tool for audio to text transcription for podcasts. With ${projectName}, converting your audio content into text has never been easier. Our platform offers a simple and efficient way to transcribe your audio files into written text, allowing you to access your podcast content in a more accessible and versatile way.`)
-
-            setSecondParagraph(`
-            How does it work? It's simple:
-            \n
-
-            1.- Upload your audio file: If you have audio recordings that need to be transcribed, simply select the 'Upload recording' option and upload your content. Our platform will take care of the rest.
-            \n
-            2.- Receive the transcription: Once you have uploaded your audio file, ${projectName} will work diligently to transcribe the content into text. In no time, you will receive the complete and accurate transcription of your audio.
-            `)
-
-            setThirdParagraph(`With ${projectName}, get accurate and quality transcriptions for your podcasts, making editing, searching, and accessing your audio content easier. Join our community of podcast creators today and take your audio projects to the next level with ${projectName}.`)
+  const changeTextLanguage = (language) => {
+    let first, second, third;
+    
+    const record = {
+        description: '',
+        sendRecord: '',
+        status: {
+            initial: '',
+            recording: '',
+            finished: ''
         }
+    };
 
-    }, [])
+    const upload = {
+        description: '',
+        title: ''
+    };
 
+    if (language === "es") {
+      first = `Bienvenido a ${projectName}, tu herramienta especializada en la transcripción de audio a texto para podcasts. Con ${projectName}, convertir tu contenido auditivo en texto nunca ha sido tan fácil. Nuestra plataforma ofrece una manera sencilla y eficiente de transcribir tus archivos de audio en texto escrito, lo que te permite acceder al contenido de tus podcasts de una forma más accesible y versátil.`;
 
-    return {
-        firstParagraph,
-        secondParagraph,
-        thirdParagraph
+      second = `
+      ¿Cómo funciona? Es simple:
+      \n
+      1.- Sube tu archivo de audio: Si tienes grabaciones de audio que necesitas transcribir, simplemente selecciona la opción 'Subir grabacion' y carga tu contenido. Nuestra plataforma se encargará del resto.
+      \n
+      2.- Recibe la transcripción: Una vez que hayas subido tu archivo de audio, ${projectName} trabajará diligentemente para transcribir el contenido a texto. En poco tiempo, recibirás la transcripción completa y precisa de tu audio.
+      `;
+
+      third = `Con ${projectName}, obtén transcripciones precisas y de calidad para tus podcasts, facilitando la edición, búsqueda y accesibilidad de tu contenido auditivo. Únete a nuestra comunidad de creadores de podcasts hoy mismo y lleva tus proyectos auditivos al siguiente nivel con ${projectName}.`;
+
+      record.description = "Haz clic aquí para comenzar a grabar audio directamente desde tu dispositivo. Esta opción activará el micrófono de tu dispositivo para que puedas empezar a grabar."
+      record.sendRecord = "ENVIAR GRABACION"
+      record.status.initial = "INICIAR GRABACION"
+      record.status.recording = "DETENER GRABACION"
+      record.status.finished = "COMENZAR OTRA GRABACION"
+
+      upload.description = "Haz clic aquí para seleccionar un archivo de audio que ya tengas guardado en tu computadora o dispositivo. Solo necesitas buscar el archivo y hacer clic en él para seleccionarlo."
+      upload.title = "SUBIR GRABACION"
+    } else if (language === "en") {
+      first = `Welcome to ${projectName}, your specialized tool for audio to text transcription for podcasts. With ${projectName}, converting your audio content into text has never been easier. Our platform offers a simple and efficient way to transcribe your audio files into written text, allowing you to access your podcast content in a more accessible and versatile way.`;
+
+      second = `
+        How does it work? It's simple:
+        \n
+        
+        1.- Upload your audio file: If you have audio recordings that need to be transcribed, simply select the 'Upload recording' option and upload your content. Our platform will take care of the rest.
+        \n
+        2.- Receive the transcription: Once you have uploaded your audio file, ${projectName} will work diligently to transcribe the content into text. In no time, you will receive the complete and accurate transcription of your audio.
+        `;
+
+      third = `With ${projectName}, get accurate and quality transcriptions for your podcasts, making editing, searching, and accessing your audio content easier. Join our community of podcast creators today and take your audio projects to the next level with ${projectName}.`;
+
+      record.description = "Click here to start recording audio directly from your device. This option will activate your device's microphone so you can begin recording.";
+      record.sendRecord = "SEND RECORDING"
+      record.status.initial = "START RECORDING";
+      record.status.recording = "STOP RECORDING";
+      record.status.finished = "START ANOTHER RECORDING";
+      
+      upload.description = "Click here to select an audio file that you already have saved on your computer or device. You just need to browse for the file and click on it to select it.";
+      upload.title = "UPLOAD RECORDING";
     }
-}
+
+    setFirstParagraph(first);
+    setSecondParagraph(second);
+    setThirdParagraph(third);
+    setRecord(record);
+    setUpload(upload);
+  };
+
+  return {
+    firstParagraph,
+    secondParagraph,
+    thirdParagraph,
+    record,
+    upload,
+    changeTextLanguage,
+  };
+};
