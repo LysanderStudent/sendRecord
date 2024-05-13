@@ -14,8 +14,8 @@ export const UploadFileComponent = () => {
   } = useUpload();
 
   return (
-    <Card style={{ backgroundColor: '#EAEAEA', textAlign: 'center' }}>
-      <Space direction='vertical' size='small' align='center'>
+    <Card style={{ backgroundColor: '#EAEAEA', textAlign: 'center', height: 350 }}>
+      <Space direction='vertical' align='center'>
 
         <Dragger
           customRequest={handleAction}
@@ -28,8 +28,8 @@ export const UploadFileComponent = () => {
           </p>
           <Title level={3}>SUBIR GRABACION</Title>
 
-          <Text className="ant-upload-hint">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo, facere harum fuga nobis ex, dicta officia perspiciatis velit iste eum consequuntur. Dolor voluptas tenetur ipsam sit voluptate ratione consectetur sequi.
+          <Text italic>
+            Haz clic aquí para seleccionar un archivo de audio que ya tengas guardado en tu computadora o dispositivo. Solo necesitas buscar el archivo y hacer clic en él para seleccionarlo.
           </Text>
 
           {progress > 0 && <Progress percent={progress} />}

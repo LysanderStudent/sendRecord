@@ -3,9 +3,11 @@ import { Button, Col, Row, Space, Typography } from 'antd';
 import { langugeButtonStyle } from '../css/styles';
 import { RecordComponents } from '../../record/components/RecordComponents';
 import { UploadFileComponent } from '../../record/components/UploadFileComponent';
+import { TextsDisplay } from '../../languages/TextsDisplay';
 
 export const ContentComponent = () => {
     const { Text } = Typography;
+    const { firstParagraph, secondParagraph, thirdParagraph } = TextsDisplay();
 
     return (
         <Space direction='vertical' style={{ marginTop: 20 }}>
@@ -14,19 +16,15 @@ export const ContentComponent = () => {
             </div>
 
             <Row>
-                <Text>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet provident dolores molestias velit quia, quis repudiandae culpa cumque sapiente quas debitis, ullam atque aliquid cum, nam iure vitae quod quaerat.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet provident dolores molestias velit quia, quis repudiandae culpa cumque sapiente quas debitis, ullam atque aliquid cum, nam iure vitae quod quaerat.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet provident dolores molestias velit quia, quis repudiandae culpa cumque sapiente quas debitis, ullam atque aliquid cum, nam iure vitae quod quaerat.
-                </Text>
+                <Text>{firstParagraph}</Text>
             </Row>
 
             <Row>
-                <Text>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet provident dolores molestias velit quia, quis repudiandae culpa cumque sapiente quas debitis, ullam atque aliquid cum, nam iure vitae quod quaerat.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet provident dolores molestias velit quia, quis repudiandae culpa cumque sapiente quas debitis, ullam atque aliquid cum, nam iure vitae quod quaerat.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet provident dolores molestias velit quia, quis repudiandae culpa cumque sapiente quas debitis, ullam atque aliquid cum, nam iure vitae quod quaerat.
-                </Text>
+                <Text>{secondParagraph}</Text>
+            </Row>
+
+            <Row>
+                <Text>{thirdParagraph}</Text>
             </Row>
 
             <Row gutter={20}>

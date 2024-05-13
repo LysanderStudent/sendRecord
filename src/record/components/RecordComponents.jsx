@@ -14,8 +14,8 @@ export const RecordComponents = () => {
   } = useRecord();
 
   return (
-    <Card style={{ backgroundColor: '#EAEAEA', textAlign: 'center' }}>
-      <Space direction='vertical' size='small' align='center'>
+    <Card style={{ backgroundColor: '#EAEAEA', textAlign: 'center', height: 350 }}>
+      <Space direction='vertical' align='center'>
         <BsFillMicFill size={100} />
 
         <Row gutter={5}>
@@ -28,8 +28,8 @@ export const RecordComponents = () => {
           }
         </Row>
 
-        <Text>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo, facere harum fuga nobis ex, dicta officia perspiciatis velit iste eum consequuntur. Dolor voluptas tenetur ipsam sit voluptate ratione consectetur sequi.
+        <Text italic>
+          Haz clic aquí para comenzar a grabar audio directamente desde tu dispositivo. Esta opción activará el micrófono de tu dispositivo para que puedas empezar a grabar.
         </Text>
       </Space>
     </Card>
