@@ -1,7 +1,10 @@
 import { message } from 'antd';
 import io from 'socket.io-client';
+import { TextsDisplay } from '../languages/TextsDisplay';
 
 let socket;
+
+const { language } = TextsDisplay();
 
 const setupSocketListeners = () => {
     socket.on('uploadFileError', (data) => {
@@ -13,6 +16,7 @@ const setupSocketListeners = () => {
     });
 
     socket.on('fileUploaded', (data) => {
+        console.log({ language })
         message.success(data.message);
         socket.emit('transcript');
     });

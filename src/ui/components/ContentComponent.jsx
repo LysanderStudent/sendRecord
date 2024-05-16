@@ -4,18 +4,18 @@ import { langugeButtonStyle } from "../css/styles";
 import { RecordComponents } from "../../record/components/RecordComponents";
 import { UploadFileComponent } from "../../record/components/UploadFileComponent";
 import { TextsDisplay } from "../../languages/TextsDisplay";
-import { useLanguage } from "../hooks/useLanguage";
 
 export const ContentComponent = ({ projectName }) => {
   const { Text } = Typography;
-  const { showButtons, handleIdiomaClick } = useLanguage();
   const {
     firstParagraph,
     secondParagraph,
     thirdParagraph,
     record,
     upload,
-    changeTextLanguage,
+    showButtons,
+    setLanguage,
+    handleIdiomaClick
   } = TextsDisplay(projectName);
 
   return (
@@ -31,7 +31,7 @@ export const ContentComponent = ({ projectName }) => {
             <>
               <Button
                 style={langugeButtonStyle}
-                onClick={() => changeTextLanguage("es")}
+                onClick={() => setLanguage("es")}
               >
                 <img
                   src="ruta/para/bandera_mexico.png"
@@ -40,7 +40,7 @@ export const ContentComponent = ({ projectName }) => {
               </Button>
               <Button
                 style={langugeButtonStyle}
-                onClick={() => changeTextLanguage("en")}
+                onClick={() => setLanguage("en")}
               >
                 <img src="ruta/para/bandera_usa.png" alt="Bandera de USA" />
               </Button>

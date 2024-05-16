@@ -6,12 +6,14 @@ export const TextsDisplay = (projectName) => {
   const [thirdParagraph, setThirdParagraph] = useState();
   const [record, setRecord] = useState();
   const [upload, setUpload] = useState();
+  const [language, setLanguage] = useState("es");
+  const [showButtons, setShowButtons] = useState(false);
 
   useEffect(() => {
-    changeTextLanguage("es");
-  }, []);
+    changeTextLanguage();
+  }, [language]);
 
-  const changeTextLanguage = (language) => {
+  const changeTextLanguage = () => {
     let first, second, third;
     
     const record = {
@@ -81,12 +83,20 @@ export const TextsDisplay = (projectName) => {
     setUpload(upload);
   };
 
+
+  const handleIdiomaClick = () => {
+    setShowButtons(!showButtons);
+  };
+
   return {
     firstParagraph,
     secondParagraph,
     thirdParagraph,
     record,
     upload,
-    changeTextLanguage,
+    language,
+    showButtons,
+    setLanguage,
+    handleIdiomaClick
   };
 };
