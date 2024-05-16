@@ -1,20 +1,22 @@
-import { message } from 'antd';
-import { getSocket } from '../../hooks/socketService';
-import { useState } from 'react';
+import { message } from "antd";
+import { getSocket } from "../../hooks/socketService";
+import { useState } from "react";
 
-export const useUpload = () => {
+export const useUpload = (language) => {
   const [progress, setProgress] = useState(0);
   const socket = getSocket();
 
   const onChange = (info) => {
     const { status } = info.file;
 
-    if (status === 'done') {
-      message.success(`${info.file.name} guardado del lado del cliente satisfactoriamente`);
-    } else if (status === 'error') {
+    if (status === "done") {
+      message.success(
+        `${info.file.name} guardado del lado del cliente satisfactoriamente`
+      );
+    } else if (status === "error") {
       message.error(`${info.file.name} algo falló al cargar el archivo`);
     }
-  }
+  };
 
   const handleAction = ({ file }) => {
     const reader = new FileReader();
@@ -28,7 +30,7 @@ export const useUpload = () => {
 
     reader.onload = (e) => {
       setProgress(0);
-      socket.emit('uploadFileToServer', e.target.result);
+      socket.emit("uploadFileToServer", { file: e.target.result, language });
     };
 
     reader.onerror = (e) => {
@@ -43,5 +45,5 @@ export const useUpload = () => {
     progress,
     handleAction,
     onChange,
-  }
-}
+  };
+};

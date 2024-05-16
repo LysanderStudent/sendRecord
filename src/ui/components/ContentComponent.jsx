@@ -14,6 +14,7 @@ export const ContentComponent = ({ projectName }) => {
     record,
     upload,
     showButtons,
+    language,
     setLanguage,
     handleIdiomaClick
   } = TextsDisplay(projectName);
@@ -63,11 +64,11 @@ export const ContentComponent = ({ projectName }) => {
 
       <Row gutter={20}>
         <Col span={12}>
-          <RecordComponents textRecord={record} />
+          <RecordComponents language={language} textRecord={record} />
         </Col>
 
         <Col span={12}>
-          <UploadFileComponent textUpload={upload} />
+          <UploadFileComponent language={language} textUpload={upload} />
         </Col>
       </Row>
     </Space>

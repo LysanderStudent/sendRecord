@@ -3,11 +3,11 @@ import { Card, Progress, Space, Typography, Upload } from "antd";
 import { BsFileEarmarkMusicFill } from "react-icons/bs";
 import { useUpload } from "../hooks/useUpload";
 
-export const UploadFileComponent = ({ textUpload }) => {
+export const UploadFileComponent = ({ textUpload, language }) => {
   const { Title, Text } = Typography;
   const { Dragger } = Upload;
 
-  const { progress, onChange, handleAction } = useUpload();
+  const { progress, onChange, handleAction } = useUpload(language);
 
   return (
     <Card

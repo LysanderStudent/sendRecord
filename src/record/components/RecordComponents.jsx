@@ -3,10 +3,10 @@ import { Button, Card, Space, Typography, Row, Col } from "antd";
 import { BsFillMicFill } from "react-icons/bs";
 import { useRecord } from "../hooks/useRecord";
 
-export const RecordComponents = ({ textRecord }) => {
+export const RecordComponents = ({ textRecord, language }) => {
   const { Text } = Typography;
   const { status, message, mediaBlobUrl, handleActionRecord, sendAudio } =
-    useRecord(textRecord?.status);
+    useRecord(textRecord?.status, language);
 
   return (
     <Card

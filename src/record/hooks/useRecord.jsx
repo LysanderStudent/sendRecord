@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useReactMediaRecorder } from "react-media-recorder";
 import { getSocket } from "../../hooks/socketService";
 
-export const useRecord = (messagesStatus) => {
+export const useRecord = (messagesStatus, language) => {
   const socket = getSocket();
   const [message, setMessage] = useState("INICIAR GRABACION");
 
@@ -44,7 +44,7 @@ export const useRecord = (messagesStatus) => {
   const sendAudio = async () => {
     await fetch(mediaBlobUrl)
       .then((res) => res.blob())
-      .then((blob) => socket.emit("uploadFileToServer", blob))
+      .then((blob) => socket.emit("uploadFileToServer", { file: blob, language }))
       .catch((err) => console.error({ err }));
   };
 
