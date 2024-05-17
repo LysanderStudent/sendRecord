@@ -7,6 +7,8 @@ export const TextsDisplay = (projectName) => {
   const [record, setRecord] = useState();
   const [upload, setUpload] = useState();
   const [headerText, setHeaderText] = useState();
+  const [uploadText, setUploadText] = useState();
+  const [recordText, setRecordText] = useState();
   const [language, setLanguage] = useState("es");
 
   useEffect(() => {
@@ -14,7 +16,7 @@ export const TextsDisplay = (projectName) => {
   }, [language]);
 
   const changeTextLanguage = () => {
-    let first, second, third, headerText;
+    let first, second, third, headerText, uploadText, recordText;
 
     const record = {
       description: "",
@@ -55,6 +57,9 @@ export const TextsDisplay = (projectName) => {
 
       third = `Con ${projectName}, obtén transcripciones precisas y de calidad para tus podcasts, facilitando la edición, búsqueda y accesibilidad de tu contenido auditivo. Únete a nuestra comunidad de creadores de podcasts hoy mismo y lleva tus proyectos auditivos al siguiente nivel con ${projectName}.`;
 
+      uploadText = "Subir Grabación";
+      recordText = "Crear Grabación";
+
       record.description =
         "Haz clic aquí para comenzar a grabar audio directamente desde tu dispositivo. Esta opción activará el micrófono de tu dispositivo para que puedas empezar a grabar.";
       record.sendRecord = "ENVIAR GRABACION";
@@ -88,6 +93,9 @@ export const TextsDisplay = (projectName) => {
 
       third = `With ${projectName}, get accurate and quality transcriptions for your podcasts, making editing, searching, and accessing your audio content easier. Join our community of podcast creators today and take your audio projects to the next level with ${projectName}.`;
 
+      uploadText = "Upload Audio";
+      recordText = "Record Audio";
+
       record.description =
         "Click here to start recording audio directly from your device. This option will activate your device's microphone so you can begin recording.";
       record.sendRecord = "SEND RECORDING";
@@ -101,6 +109,8 @@ export const TextsDisplay = (projectName) => {
     }
 
     setHeaderText(headerText);
+    setUploadText(uploadText);
+    setRecordText(recordText);
     setFirstParagraph(first);
     setSecondParagraph(second);
     setThirdParagraph(third);
@@ -110,6 +120,8 @@ export const TextsDisplay = (projectName) => {
 
   return {
     headerText,
+    uploadText,
+    recordText,
     firstParagraph,
     secondParagraph,
     thirdParagraph,

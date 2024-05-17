@@ -38,6 +38,8 @@ export const BasePage = () => {
 
   const {
     headerText,
+    uploadText,
+    recordText,
     firstParagraph,
     secondParagraph,
     thirdParagraph,
@@ -91,13 +93,13 @@ export const BasePage = () => {
               style={activeButton === "upload" ? activeStyle : inactiveStyle}
               onClick={() => setActiveButton("upload")}
             >
-              Upload Audio
+              {uploadText}
             </Button>
             <Button
               style={activeButton === "record" ? activeStyle : inactiveStyle}
               onClick={() => setActiveButton("record")}
             >
-              Record Audio
+              {recordText}
             </Button>
           </Space>
         </Row>
