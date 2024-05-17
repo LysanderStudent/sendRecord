@@ -3,13 +3,13 @@ import io from "socket.io-client";
 
 let socket;
 
-const setupSocketListeners = () => {
+const setupSocketListeners = (setTranscription) => {
   socket.on("uploadFileError", (data) => {
     message.error(data.message);
   });
 
   socket.on("audioTranscripted", (data) => {
-    console.log("Transcripción recibida:", data.text);
+    setTranscription(data.text);
   });
 
   socket.on("fileUploaded", (data) => {
@@ -18,10 +18,10 @@ const setupSocketListeners = () => {
   });
 };
 
-export const getSocket = () => {
+export const getSocket = (setTranscription) => {
   if (!socket) {
     socket = io("http://localhost:3010");
-    setupSocketListeners();
+    setupSocketListeners(setTranscription);
   }
   return socket;
 };

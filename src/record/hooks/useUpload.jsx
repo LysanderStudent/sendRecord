@@ -2,9 +2,9 @@ import { message } from "antd";
 import { getSocket } from "../../hooks/socketService";
 import { useState } from "react";
 
-export const useUpload = (language) => {
+export const useUpload = (language, setTranscription) => {
   const [progress, setProgress] = useState(0);
-  const socket = getSocket();
+  const socket = getSocket(setTranscription);
 
   const onChange = (info) => {
     const { status } = info.file;

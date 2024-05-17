@@ -1,30 +1,40 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Col, Input, Layout, Popover, Row, Space, Typography } from "antd";
 import { FiCopy, FiDownload } from "react-icons/fi";
 
 import {
+  RowTranscriptionOptionsStyle,
   activeStyle,
   buttonsOption,
   headerStyle,
   inactiveStyle,
   langugeButtonStyle,
   langugeSelectedStyle,
+  removeStylesButtonAntd,
+  textAreaStyle,
+  textAreaTrancriptionStyle,
   textStyle,
 } from "../ui/css/styles";
 import { RecordComponents } from "../record/components/RecordComponents";
 import { UploadFileComponent } from "../record/components/UploadFileComponent";
 import { TextsDisplay } from "../languages/TextsDisplay";
+import { useBasePage } from "../hooks/useBasePage";
 import '../index.css';
 
 export const BasePage = () => {
-  const projectName = "[Nombre del proyecto]";
-
   const { Header } = Layout;
   const { Text, Title } = Typography;
   const { TextArea } = Input;
 
-  const [transcription, setTranscription] = useState("prueba");
-  const [activeButton, setActiveButton] = useState("upload");
+  const {
+    activeButton,
+    projectName,
+    transcription,
+    setActiveButton,
+    setTranscription,
+    copyToClipboard,
+    downloadTranstiption
+  } = useBasePage();
 
   const {
     headerText,
@@ -47,17 +57,13 @@ export const BasePage = () => {
 
           <Space>
             <Button
-              style={
-                language === "es" ? langugeSelectedStyle : langugeButtonStyle
-              }
+              style={language === "es" ? langugeSelectedStyle : langugeButtonStyle}
               onClick={() => setLanguage("es")}
             >
               Español
             </Button>
             <Button
-              style={
-                language === "en" ? langugeSelectedStyle : langugeButtonStyle
-              }
+              style={language === "en" ? langugeSelectedStyle : langugeButtonStyle}
               onClick={() => setLanguage("en")}
             >
               English
@@ -96,26 +102,26 @@ export const BasePage = () => {
           </Space>
         </Row>
 
-        <Row gutter={7} style={{ display: "flex", justifyContent: "center", height: 400 }}>
+        <Row gutter={7} style={RowTranscriptionOptionsStyle}>
           <Col span={12} style={{ backgroundColor: "#F3F4F6" }}>
             {activeButton === "upload" ? (
-              <UploadFileComponent language={language} textUpload={upload} />
+              <UploadFileComponent setTranscription={setTranscription} language={language} textUpload={upload} />
             ) : (
-              <RecordComponents language={language} textRecord={record} />
+              <RecordComponents setTranscription={setTranscription} language={language} textRecord={record} />
             )}
           </Col>
 
-          <Col span={12} style={{ display: "flex", justifyContent: "center", alignItems: "start" }}>
-            <TextArea value={transcription} readOnly style={{ resize: "none", height: 400 }} />
+          <Col span={12} style={textAreaTrancriptionStyle}>
+            <TextArea value={transcription} readOnly style={textAreaStyle} />
 
             <Popover content={language === "es" ? "Copiar" : "Copy"}>
-              <Button style={{ border: 0, boxShadow: 'none' }}>
+              <Button onClick={copyToClipboard} style={removeStylesButtonAntd}>
                 <FiCopy size={20} />
               </Button>
             </Popover>
 
             <Popover content={language === "es" ? "Descargar" : "Download"}>
-              <Button style={{ border: 0, boxShadow: 'none' }}>
+              <Button onClick={downloadTranstiption} style={removeStylesButtonAntd}>
                 <FiDownload size={20} />
               </Button>
             </Popover>

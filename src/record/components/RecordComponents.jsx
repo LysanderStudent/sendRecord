@@ -1,20 +1,26 @@
 import React from "react";
 import { Button, Card, Space, Typography, Row, Col } from "antd";
 import { AiTwotoneAudio } from "react-icons/ai";
+import PropTypes from 'prop-types';
 import { useRecord } from "../hooks/useRecord";
+import {
+  cardRecordStyle,
+  buttonStartRecordStyle,
+  textRecordStyle
+} from '../../ui/css/styles';
 
-export const RecordComponents = ({ textRecord, language }) => {
+export const RecordComponents = ({ textRecord, language, setTranscription }) => {
   const { Text } = Typography;
   const { status, message, mediaBlobUrl, handleActionRecord, sendAudio } =
-    useRecord(textRecord?.status, language);
+    useRecord(textRecord?.status, language, setTranscription);
 
   return (
     <Card
-      style={{ backgroundColor: "#F3F4F6", textAlign: "center", padding: 40 }}
+      style={cardRecordStyle}
     >
       <Space direction="vertical">
         <div style={{ height: 100 }}>
-          <Button style={{ display: 'flex', alignItems: 'center', background: 'none', border: 0, boxShadow: 'none', height: '50%', marginBottom: 10 }} onClick={handleActionRecord}>
+          <Button style={buttonStartRecordStyle} onClick={handleActionRecord}>
             <AiTwotoneAudio size={50} />
             {message}
           </Button>
@@ -34,7 +40,7 @@ export const RecordComponents = ({ textRecord, language }) => {
         </div>
 
         <Row style={{ marginTop: 70 }}>
-          <Text italic style={{ textAlign: "center", color: "#6B7280" }}>
+          <Text italic style={textRecordStyle}>
             {textRecord?.description}
           </Text>
         </Row>
@@ -43,3 +49,9 @@ export const RecordComponents = ({ textRecord, language }) => {
     </Card>
   );
 };
+
+RecordComponents.propTypes = {
+  textRecord: PropTypes.object,
+  language: PropTypes.string.isRequired,
+  setTranscription: PropTypes.func.isRequired
+}

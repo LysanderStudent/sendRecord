@@ -1,14 +1,16 @@
 import React from "react";
-import { Card, Progress, Space, Typography, Upload } from "antd";
-import { BsFileEarmarkMusicFill } from "react-icons/bs";
-import { useUpload } from "../hooks/useUpload";
+import { Progress, Typography, Upload } from "antd";
 import { FiShare } from "react-icons/fi";
+import PropTypes from 'prop-types';
 
-export const UploadFileComponent = ({ textUpload, language }) => {
+import { draggerStyle } from '../../ui/css/styles';
+import { useUpload } from "../hooks/useUpload";
+
+export const UploadFileComponent = ({ textUpload, language, setTranscription }) => {
   const { Title, Text } = Typography;
   const { Dragger } = Upload;
 
-  const { progress, onChange, handleAction } = useUpload(language);
+  const { progress, onChange, handleAction } = useUpload(language, setTranscription);
 
   return (
     <Dragger
@@ -16,7 +18,7 @@ export const UploadFileComponent = ({ textUpload, language }) => {
       multiple={false}
       onChange={onChange}
       showUploadList={false}
-      style={{ background: '#F3F4F6', color: '#9CA3AF' }}
+      style={draggerStyle}
     >
       <p className="ant-upload-drag-icon">
         <FiShare size={100} />
@@ -28,4 +30,10 @@ export const UploadFileComponent = ({ textUpload, language }) => {
       {progress > 0 && <Progress percent={progress} />}
     </Dragger>
   );
+};
+
+UploadFileComponent.propTypes = {
+  textUpload: PropTypes.object,
+  language: PropTypes.string.isRequired,
+  setTranscription: PropTypes.func.isRequired
 };
