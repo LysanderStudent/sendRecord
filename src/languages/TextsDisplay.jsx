@@ -6,6 +6,7 @@ export const TextsDisplay = (projectName) => {
   const [thirdParagraph, setThirdParagraph] = useState();
   const [record, setRecord] = useState();
   const [upload, setUpload] = useState();
+  const [headerText, setHeaderText] = useState();
   const [language, setLanguage] = useState("es");
 
   useEffect(() => {
@@ -13,7 +14,7 @@ export const TextsDisplay = (projectName) => {
   }, [language]);
 
   const changeTextLanguage = () => {
-    let first, second, third;
+    let first, second, third, headerText;
 
     const record = {
         description: '',
@@ -31,6 +32,8 @@ export const TextsDisplay = (projectName) => {
     };
 
     if (language === "es") {
+      headerText = "Transcribe tus archivos de audio con facilidad. Simplemente carga o graba, y deja que nuestra poderosa IA haga el resto.";
+
       first = `Bienvenido a ${projectName}, tu herramienta especializada en la transcripción de audio a texto para podcasts. Con ${projectName}, convertir tu contenido auditivo en texto nunca ha sido tan fácil. Nuestra plataforma ofrece una manera sencilla y eficiente de transcribir tus archivos de audio en texto escrito, lo que te permite acceder al contenido de tus podcasts de una forma más accesible y versátil.`;
 
       second = `
@@ -52,6 +55,8 @@ export const TextsDisplay = (projectName) => {
       upload.description = "Haz clic aquí para seleccionar un archivo de audio que ya tengas guardado en tu computadora o dispositivo. Solo necesitas buscar el archivo y hacer clic en él para seleccionarlo."
       upload.title = "SUBIR GRABACION"
     } else if (language === "en") {
+      headerText = "Transcribe your audio files with ease. Simply upload or record, and let our powerful AI do the rest.";
+
       first = `Welcome to ${projectName}, your specialized tool for audio to text transcription for podcasts. With ${projectName}, converting your audio content into text has never been easier. Our platform offers a simple and efficient way to transcribe your audio files into written text, allowing you to access your podcast content in a more accessible and versatile way.`;
 
       second = `
@@ -75,6 +80,7 @@ export const TextsDisplay = (projectName) => {
       upload.title = "UPLOAD RECORDING";
     }
 
+    setHeaderText(headerText);
     setFirstParagraph(first);
     setSecondParagraph(second);
     setThirdParagraph(third);
@@ -86,6 +92,7 @@ export const TextsDisplay = (projectName) => {
 
 
   return {
+    headerText,
     firstParagraph,
     secondParagraph,
     thirdParagraph,

@@ -2,13 +2,10 @@ const colorTheme = "#1a202c";
 
 export const headerStyle = {
   height: 220,
-  paddingInline: 48,
-  lineHeight: "64px",
   backgroundColor: colorTheme,
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  borderRadius: 20,
 };
 
 export const textStyle = {
@@ -38,7 +35,7 @@ export const buttonsOption = {
   borderRadius: 10,
 };
 
-export const buttonOptionStyle = {
+const buttonOptionStyle = {
   display: "flex",
   alignItems: "center",
   padding: "10px 20px",

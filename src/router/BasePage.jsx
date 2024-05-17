@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Button, Col, Layout, Row, Space, Typography } from "antd";
+import { Button, Col, Input, Layout, Popover, Row, Space, Typography } from "antd";
+import { FiCopy, FiDownload } from "react-icons/fi";
 
 import {
   activeStyle,
-  buttonOptionStyle,
   buttonsOption,
   headerStyle,
   inactiveStyle,
@@ -14,16 +14,20 @@ import {
 import { RecordComponents } from "../record/components/RecordComponents";
 import { UploadFileComponent } from "../record/components/UploadFileComponent";
 import { TextsDisplay } from "../languages/TextsDisplay";
+import '../index.css';
 
 export const BasePage = () => {
   const projectName = "[Nombre del proyecto]";
 
   const { Header } = Layout;
   const { Text, Title } = Typography;
+  const { TextArea } = Input;
 
+  const [transcription, setTranscription] = useState("prueba");
   const [activeButton, setActiveButton] = useState("upload");
 
   const {
+    headerText,
     firstParagraph,
     secondParagraph,
     thirdParagraph,
@@ -39,10 +43,7 @@ export const BasePage = () => {
         <Space direction="vertical" align="center">
           <Title style={textStyle}>{projectName}</Title>
 
-          <Text style={{ color: "white" }}>
-            Transcribe your audio files with ease. Simply upload or record, and
-            let our powerful AI do the rest.
-          </Text>
+          <Text style={{ color: "white" }}>{headerText}</Text>
 
           <Space>
             <Button
@@ -65,7 +66,7 @@ export const BasePage = () => {
         </Space>
       </Header>
 
-      <Space direction="vertical" style={{ marginTop: 20 }}>
+      <Space direction="vertical" style={{ padding: 40 }}>
         <Row>
           <Text>{firstParagraph}</Text>
         </Row>
@@ -95,13 +96,29 @@ export const BasePage = () => {
           </Space>
         </Row>
 
-        <Row>
-          <Col>
+        <Row gutter={7} style={{ display: "flex", justifyContent: "center", height: 400 }}>
+          <Col span={12} style={{ backgroundColor: "#F3F4F6" }}>
             {activeButton === "upload" ? (
               <UploadFileComponent language={language} textUpload={upload} />
             ) : (
               <RecordComponents language={language} textRecord={record} />
             )}
+          </Col>
+
+          <Col span={12} style={{ display: "flex", justifyContent: "center", alignItems: "start" }}>
+            <TextArea value={transcription} readOnly style={{ resize: "none", height: 400 }} />
+
+            <Popover content={language === "es" ? "Copiar" : "Copy"}>
+              <Button style={{ border: 0, boxShadow: 'none' }}>
+                <FiCopy size={20} />
+              </Button>
+            </Popover>
+
+            <Popover content={language === "es" ? "Descargar" : "Download"}>
+              <Button style={{ border: 0, boxShadow: 'none' }}>
+                <FiDownload size={20} />
+              </Button>
+            </Popover>
           </Col>
         </Row>
       </Space>

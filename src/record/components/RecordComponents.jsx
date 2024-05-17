@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Card, Space, Typography, Row, Col } from "antd";
-import { BsFillMicFill } from "react-icons/bs";
+import { AiTwotoneAudio } from "react-icons/ai";
 import { useRecord } from "../hooks/useRecord";
 
 export const RecordComponents = ({ textRecord, language }) => {
@@ -10,28 +10,15 @@ export const RecordComponents = ({ textRecord, language }) => {
 
   return (
     <Card
-      style={{ backgroundColor: "#EAEAEA", textAlign: "center", height: 350 }}
+      style={{ backgroundColor: "#F3F4F6", textAlign: "center", padding: 40 }}
     >
       <Space direction="vertical">
-        <Row>
-          <BsFillMicFill size={50} />
-          <Button onClick={handleActionRecord} type="primary">
+        <div style={{ height: 100 }}>
+          <Button style={{ display: 'flex', alignItems: 'center', background: 'none', border: 0, boxShadow: 'none', height: '50%', marginBottom: 10 }} onClick={handleActionRecord}>
+            <AiTwotoneAudio size={50} />
             {message}
           </Button>
-        </Row>
 
-        <div style={{ width: "75%" }}>
-          <Text style={{ textAlign: "center" }} italic>
-            {textRecord?.description}
-          </Text>
-        </div>
-
-        <Row gutter={5}>
-          <Col>
-            <Button onClick={handleActionRecord} level={3}>
-              {message}
-            </Button>
-          </Col>
           {status === "stopped" && (
             <>
               <Col>
@@ -44,9 +31,14 @@ export const RecordComponents = ({ textRecord, language }) => {
               </Col>
             </>
           )}
+        </div>
+
+        <Row style={{ marginTop: 70 }}>
+          <Text italic style={{ textAlign: "center", color: "#6B7280" }}>
+            {textRecord?.description}
+          </Text>
         </Row>
 
-        <Text italic>{textRecord?.description}</Text>
       </Space>
     </Card>
   );
