@@ -12,8 +12,19 @@ export const RecordComponents = ({ textRecord, language }) => {
     <Card
       style={{ backgroundColor: "#EAEAEA", textAlign: "center", height: 350 }}
     >
-      <Space direction="vertical" align="center">
-        <BsFillMicFill size={100} />
+      <Space direction="vertical">
+        <Row>
+          <BsFillMicFill size={50} />
+          <Button onClick={handleActionRecord} type="primary">
+            {message}
+          </Button>
+        </Row>
+
+        <div style={{ width: "75%" }}>
+          <Text style={{ textAlign: "center" }} italic>
+            {textRecord?.description}
+          </Text>
+        </div>
 
         <Row gutter={5}>
           <Col>
