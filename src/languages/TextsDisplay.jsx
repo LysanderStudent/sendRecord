@@ -47,7 +47,7 @@ export const TextsDisplay = (projectName) => {
           resto.
           <br />
           2.- Recibe la transcripción: Una vez que hayas subido tu archivo de
-          audio, ${projectName} trabajará diligentemente para transcribir el
+          audio, {projectName} trabajará diligentemente para transcribir el
           contenido a texto. En poco tiempo, recibirás la transcripción completa
           y precisa de tu audio.
         </>
@@ -80,7 +80,7 @@ export const TextsDisplay = (projectName) => {
           your content. Our platform will take care of the rest.
           <br />
           2.- Receive the transcription: Once you have uploaded your audio file,
-          ${projectName} will work diligently to transcribe the content into
+          {projectName} will work diligently to transcribe the content into
           text. In no time, you will receive the complete and accurate
           transcription of your audio.
         </>
