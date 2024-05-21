@@ -20,7 +20,7 @@ const setupSocketListeners = (setTranscription) => {
 
 export const getSocket = (setTranscription) => {
   if (!socket) {
-    socket = io("http://localhost:3010");
+    socket = io(import.meta.env.VITE_SOCKET_URL);
     setupSocketListeners(setTranscription);
   }
   return socket;
