@@ -6,6 +6,13 @@ export const useBasePage = () => {
     const [transcription, setTranscription] = useState("");
     const [activeButton, setActiveButton] = useState("upload");
 
+    useEffect(() => {
+        const test = async () => {
+            await fetch(import.meta.env.VITE_BACKEND_URL)
+        }
+        test();
+    }, [activeButton]);
+
     const copyToClipboard = () => {
         navigator.clipboard.writeText(transcription);
         message.success("Transcripción copiada al portapapeles");
