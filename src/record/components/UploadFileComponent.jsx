@@ -20,7 +20,7 @@ export const UploadFileComponent = ({ textUpload, language, setTranscription }) 
       showUploadList={false}
       style={draggerStyle}
     >
-      <p className="ant-upload-drag-icon">
+      <p className="ant-upload-drag-icon flex justify-center">
         <FiShare size={100} />
       </p>
       <Title level={3}>{textUpload?.title}</Title>

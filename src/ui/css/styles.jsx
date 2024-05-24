@@ -1,19 +1,6 @@
-const colorTheme = "#1a202c";
-const backgroundTranscriptionOptionsStyle = '#F3F4F6';
-const colorTextOptionsStyle = '#9CA3AF';
-
-export const headerStyle = {
-  height: 220,
-  backgroundColor: colorTheme,
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-};
-
-export const textStyle = {
-  color: "#fff",
-  fontWeight: "bold",
-};
+export const colorTheme = "#1a202c";
+export const backgroundTranscriptionOptionsStyle = '#F3F4F6';
+export const colorTextOptionsStyle = '#9CA3AF';
 
 export const langugeButtonStyle = {
   color: "white",
@@ -31,40 +18,10 @@ export const langugeSelectedStyle = {
   borderWidth: 0,
 };
 
-export const buttonsOption = {
-  padding: 5,
-  backgroundColor: "#EAEAEA",
-  borderRadius: 10,
-};
+const buttonOptionStyle = "flex items-center px-8 py-5 m-0 border-0 transition duration-300 ease-in-out";
 
-const buttonOptionStyle = {
-  display: "flex",
-  alignItems: "center",
-  padding: "10px 20px",
-  margin: 0,
-  border: "none",
-  transition: "background-color 0.3s, color 0.3s",
-};
-
-export const activeStyle = {
-  ...buttonOptionStyle,
-  backgroundColor: "white",
-  color: "black",
-  border: 0,
-};
-
-export const inactiveStyle = {
-  ...buttonOptionStyle,
-  backgroundColor: "#EAEAEA",
-  color: "#666666",
-  border: 0,
-};
-
-export const RowTranscriptionOptionsStyle = {
-  display: "flex",
-  justifyContent: "center",
-  height: 400
-}
+export const activeStyle = `${buttonOptionStyle} bg-white text-black font-bold`;
+export const inactiveStyle = `${buttonOptionStyle} bg-gray-200 text-[#666666]`;
 
 export const textAreaTrancriptionStyle = {
   display: "flex",

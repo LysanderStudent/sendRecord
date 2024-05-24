@@ -3,17 +3,14 @@ import { Button, Col, Input, Layout, Popover, Row, Space, Typography } from "ant
 import { FiCopy, FiDownload } from "react-icons/fi";
 
 import {
-  RowTranscriptionOptionsStyle,
   activeStyle,
-  buttonsOption,
-  headerStyle,
+  colorTheme,
   inactiveStyle,
   langugeButtonStyle,
   langugeSelectedStyle,
   removeStylesButtonAntd,
   textAreaStyle,
   textAreaTrancriptionStyle,
-  textStyle,
 } from "../ui/css/styles";
 import { RecordComponents } from "../record/components/RecordComponents";
 import { UploadFileComponent } from "../record/components/UploadFileComponent";
@@ -51,11 +48,13 @@ export const BasePage = () => {
 
   return (
     <>
-      <Header style={headerStyle}>
+      <Header 
+        className={`h-auto lg:h-[220] bg-[${colorTheme}] flex justify-center items-center text-center`}
+      >
         <Space direction="vertical" align="center">
-          <Title style={textStyle}>{projectName}</Title>
+          <Title style={{ color: "white" }} className="font-bold">{projectName}</Title>
 
-          <Text style={{ color: "white" }}>{headerText}</Text>
+          <Text className="text-white">{headerText}</Text>
 
           <Space>
             <Button
@@ -74,7 +73,7 @@ export const BasePage = () => {
         </Space>
       </Header>
 
-      <Space direction="vertical" style={{ padding: 40 }}>
+      <Space className="p-10 w-full" direction="vertical">
         <Row>
           <Text>{firstParagraph}</Text>
         </Row>
@@ -88,15 +87,15 @@ export const BasePage = () => {
         </Row>
 
         <Row>
-          <Space style={buttonsOption} direction="horizontal">
+          <Space className="p-1 bg-gray-200 rounded-lg" direction="horizontal">
             <Button
-              style={activeButton === "upload" ? activeStyle : inactiveStyle}
+              className={activeButton === "upload" ? activeStyle : inactiveStyle}
               onClick={() => setActiveButton("upload")}
-            >
+              >
               {uploadText}
             </Button>
             <Button
-              style={activeButton === "record" ? activeStyle : inactiveStyle}
+              className={activeButton === "record" ? activeStyle : inactiveStyle}
               onClick={() => setActiveButton("record")}
             >
               {recordText}
@@ -104,7 +103,7 @@ export const BasePage = () => {
           </Space>
         </Row>
 
-        <Row gutter={7} style={RowTranscriptionOptionsStyle}>
+        <Row gutter={7} className="flex justify-center lg:h-400">
           <Col span={12} style={{ backgroundColor: "#F3F4F6" }}>
             {activeButton === "upload" ? (
               <UploadFileComponent setTranscription={setTranscription} language={language} textUpload={upload} />
