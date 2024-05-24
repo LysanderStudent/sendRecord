@@ -1,5 +1,5 @@
 import { message } from 'antd';
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export const useBasePage = () => {
     const projectName = "[Nombre del proyecto]";
