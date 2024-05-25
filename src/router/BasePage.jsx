@@ -78,6 +78,56 @@ export const BasePage = () => {
           <Text>{firstParagraph}</Text>
         </Row>
 
+        <div className="lg:hidden">
+          <Row>
+            <Space className="p-1 bg-gray-200 rounded-lg" direction="horizontal">
+              <Button
+                className={activeButton === "upload" ? activeStyle : inactiveStyle}
+                onClick={() => setActiveButton("upload")}
+              >
+                {uploadText}
+              </Button>
+              <Button
+                className={activeButton === "record" ? activeStyle : inactiveStyle}
+                onClick={() => setActiveButton("record")}
+              >
+                {recordText}
+              </Button>
+            </Space>
+          </Row>
+
+          <Row gutter={7} className="block mt-2 lg:flex lg:justify-center lg:h-400">
+            <Col className="lg:w-1/2" style={{ backgroundColor: "#F3F4F6" }}>
+              {activeButton === "upload" ? (
+                <UploadFileComponent setTranscription={setTranscription} language={language} textUpload={upload} />
+              ) : (
+                <RecordComponents setTranscription={setTranscription} language={language} textRecord={record} />
+              )}
+            </Col>
+
+            <Col className={`lg:w-1/2 ${textAreaTrancriptionStyle}`}>
+              <TextArea value={transcription} readOnly style={textAreaStyle} />
+
+              <Space>
+                <Popover content={language === "es" ? "Copiar" : "Copy"}>
+                  <Button className="flex" onClick={copyToClipboard} style={removeStylesButtonAntd}>
+                    <FiCopy size={20} />
+                    <p className="ml-2 lg:hidden">{language === "es" ? "Copiar" : "Copy"}</p>
+                  </Button>
+                </Popover>
+
+                <Popover content={language === "es" ? "Descargar" : "Download"}>
+                  <Button className="flex" onClick={downloadTranstiption} style={removeStylesButtonAntd}>
+                    <FiDownload size={20} />
+                    <p className="ml-2 lg:hidden">{language === "es" ? "Descargar" : "Download"}</p>
+                  </Button>
+                </Popover>
+              </Space>
+
+            </Col>
+          </Row>
+        </div>
+
         <Row>
           <Text>{secondParagraph}</Text>
         </Row>
@@ -86,53 +136,55 @@ export const BasePage = () => {
           <Text>{thirdParagraph}</Text>
         </Row>
 
-        <Row>
-          <Space className="p-1 bg-gray-200 rounded-lg" direction="horizontal">
-            <Button
-              className={activeButton === "upload" ? activeStyle : inactiveStyle}
-              onClick={() => setActiveButton("upload")}
-            >
-              {uploadText}
-            </Button>
-            <Button
-              className={activeButton === "record" ? activeStyle : inactiveStyle}
-              onClick={() => setActiveButton("record")}
-            >
-              {recordText}
-            </Button>
-          </Space>
-        </Row>
-
-        <Row gutter={7} className="block lg:flex lg:justify-center lg:h-400">
-          <Col className="lg:w-1/2" style={{ backgroundColor: "#F3F4F6" }}>
-            {activeButton === "upload" ? (
-              <UploadFileComponent setTranscription={setTranscription} language={language} textUpload={upload} />
-            ) : (
-              <RecordComponents setTranscription={setTranscription} language={language} textRecord={record} />
-            )}
-          </Col>
-
-          <Col className={`lg:w-1/2 ${textAreaTrancriptionStyle}`}>
-            <TextArea value={transcription} readOnly style={textAreaStyle} />
-
-            <Space>
-              <Popover content={language === "es" ? "Copiar" : "Copy"}>
-                <Button className="flex" onClick={copyToClipboard} style={removeStylesButtonAntd}>
-                  <FiCopy size={20} />
-                  <p className="ml-2 lg:hidden">{language === "es" ? "Copiar" : "Copy"}</p>
-                </Button>
-              </Popover>
-
-              <Popover content={language === "es" ? "Descargar" : "Download"}>
-                <Button className="flex" onClick={downloadTranstiption} style={removeStylesButtonAntd}>
-                  <FiDownload size={20} />
-                  <p className="ml-2 lg:hidden">{language === "es" ? "Descargar" : "Download"}</p>
-                </Button>
-              </Popover>
+        <div className="hidden lg:block">
+          <Row>
+            <Space className="p-1 bg-gray-200 rounded-lg" direction="horizontal">
+              <Button
+                className={activeButton === "upload" ? activeStyle : inactiveStyle}
+                onClick={() => setActiveButton("upload")}
+              >
+                {uploadText}
+              </Button>
+              <Button
+                className={activeButton === "record" ? activeStyle : inactiveStyle}
+                onClick={() => setActiveButton("record")}
+              >
+                {recordText}
+              </Button>
             </Space>
+          </Row>
 
-          </Col>
-        </Row>
+          <Row gutter={7} className="block mt-2 lg:flex lg:justify-center lg:h-400">
+            <Col className="lg:w-1/2" style={{ backgroundColor: "#F3F4F6" }}>
+              {activeButton === "upload" ? (
+                <UploadFileComponent setTranscription={setTranscription} language={language} textUpload={upload} />
+              ) : (
+                <RecordComponents setTranscription={setTranscription} language={language} textRecord={record} />
+              )}
+            </Col>
+
+            <Col className={`lg:w-1/2 ${textAreaTrancriptionStyle}`}>
+              <TextArea value={transcription} readOnly style={textAreaStyle} />
+
+              <Space>
+                <Popover content={language === "es" ? "Copiar" : "Copy"}>
+                  <Button className="flex" onClick={copyToClipboard} style={removeStylesButtonAntd}>
+                    <FiCopy size={20} />
+                    <p className="ml-2 lg:hidden">{language === "es" ? "Copiar" : "Copy"}</p>
+                  </Button>
+                </Popover>
+
+                <Popover content={language === "es" ? "Descargar" : "Download"}>
+                  <Button className="flex" onClick={downloadTranstiption} style={removeStylesButtonAntd}>
+                    <FiDownload size={20} />
+                    <p className="ml-2 lg:hidden">{language === "es" ? "Descargar" : "Download"}</p>
+                  </Button>
+                </Popover>
+              </Space>
+
+            </Col>
+          </Row>
+        </div>
       </Space >
     </>
   );
