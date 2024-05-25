@@ -16,10 +16,11 @@ export const RecordComponents = ({ textRecord, language, setTranscription }) => 
 
   return (
     <Card
+      className="lg:p-10 flex justify-center items-center lg:block"
       style={cardRecordStyle}
     >
       <Space direction="vertical">
-        <div style={{ height: 100 }}>
+        <div className="text-center lg:text-left" style={{ height: 100 }}>
           <Button style={buttonStartRecordStyle} onClick={handleActionRecord}>
             <AiTwotoneAudio size={50} />
             {message}
@@ -27,12 +28,12 @@ export const RecordComponents = ({ textRecord, language, setTranscription }) => 
 
           {status === "stopped" && (
             <>
-              <Col>
+              <Col className="mt-1">
                 <audio src={mediaBlobUrl} controls autoPlay>
                   <track kind="captions"></track>
                 </audio>
               </Col>
-              <Col>
+              <Col className="mt-1">
                 <Button onClick={sendAudio}>{textRecord?.sendRecord}</Button>
               </Col>
             </>

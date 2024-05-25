@@ -18,16 +18,12 @@ export const langugeSelectedStyle = {
   borderWidth: 0,
 };
 
-const buttonOptionStyle = "flex items-center px-8 py-5 m-0 border-0 transition duration-300 ease-in-out";
+const buttonOptionStyle = "flex items-center lg:px-8 lg:py-5 m-0 border-0 transition duration-300 ease-in-out";
 
 export const activeStyle = `${buttonOptionStyle} bg-white text-black font-bold`;
 export const inactiveStyle = `${buttonOptionStyle} bg-gray-200 text-[#666666]`;
 
-export const textAreaTrancriptionStyle = {
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "start"
-}
+export const textAreaTrancriptionStyle = "mt-2 lg:mt-0 lg:flex justify-center items-start";
 
 export const textAreaStyle = {
   resize: "none",
@@ -47,7 +43,6 @@ export const draggerStyle = {
 export const cardRecordStyle = {
   backgroundColor: backgroundTranscriptionOptionsStyle,
   textAlign: "center",
-  padding: 40
 }
 
 export const buttonStartRecordStyle = {

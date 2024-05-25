@@ -2,7 +2,7 @@ import { message } from 'antd';
 import { useEffect, useState } from 'react'
 
 export const useBasePage = () => {
-    const projectName = "[Nombre del proyecto]";
+    const projectName = "The ClerkTranscript";
     const [transcription, setTranscription] = useState("");
     const [activeButton, setActiveButton] = useState("upload");
 
