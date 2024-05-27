@@ -104,7 +104,7 @@ export const BasePage = () => {
               </Button>
             </Space>
 
-            {speakersCount > 0 && (
+            {speakersCount > 1 && (
               <Button className="mt-2" onClick={() => setModal(true)}>
                 {`${assignNames} (${speakersCount})`}
               </Button>
@@ -178,7 +178,7 @@ export const BasePage = () => {
               </Button>
             </Space>
 
-            {speakersCount > 0 && (
+            {speakersCount > 1 && (
               <Button onClick={() => setModal(true)}>
                 {`${assignNames} (${speakersCount})`}
               </Button>
