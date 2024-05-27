@@ -8,6 +8,12 @@ const setupSocketListeners = (setTranscription, setSpeakersCount) => {
     message.error(data.message);
   });
 
+  // Manejar eventos de error
+  socket.on('connect_error', (error) => {
+    message.error('Error al conectar al servidor de socket');
+    console.error(error);
+  });
+
   socket.on("audioTranscripted", (data) => {
     let { text, speakersCount } = data;
 
