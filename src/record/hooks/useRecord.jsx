@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useReactMediaRecorder } from "react-media-recorder";
 import { getSocket } from "../../hooks/socketService";
 
-export const useRecord = (messagesStatus, language, setTranscription) => {
-  const socket = getSocket(setTranscription);
+export const useRecord = (messagesStatus, language, setTranscription, setSpeakersCount) => {
+  const socket = getSocket(setTranscription, setSpeakersCount);
   const [message, setMessage] = useState("INICIAR GRABACION");
 
   const { status, mediaBlobUrl, startRecording, stopRecording } =

@@ -6,11 +6,11 @@ import PropTypes from 'prop-types';
 import { draggerStyle } from '../../ui/css/styles';
 import { useUpload } from "../hooks/useUpload";
 
-export const UploadFileComponent = ({ textUpload, language, setTranscription }) => {
+export const UploadFileComponent = ({ textUpload, language, setTranscription, setSpeakersCount }) => {
   const { Title, Text } = Typography;
   const { Dragger } = Upload;
 
-  const { progress, onChange, handleAction } = useUpload(language, setTranscription);
+  const { progress, onChange, handleAction } = useUpload(language, setTranscription, setSpeakersCount);
 
   return (
     <Dragger

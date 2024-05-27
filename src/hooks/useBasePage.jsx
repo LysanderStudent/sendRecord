@@ -4,7 +4,9 @@ import { useEffect, useState } from 'react'
 export const useBasePage = () => {
     const projectName = "The ClerkTranscript";
     const [transcription, setTranscription] = useState("");
+    const [speakersCount, setSpeakersCount] = useState(0);
     const [activeButton, setActiveButton] = useState("upload");
+    const [modal, setModal] = useState(false);
 
     useEffect(() => {
         const test = async () => {
@@ -29,12 +31,16 @@ export const useBasePage = () => {
     }
 
     return {
+        modal,
         projectName,
         transcription,
         activeButton,
+        speakersCount,
+        setSpeakersCount,
         setTranscription,
         setActiveButton,
         copyToClipboard,
-        downloadTranstiption
+        downloadTranstiption,
+        setModal
     }
 }

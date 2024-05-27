@@ -17,6 +17,7 @@ import { UploadFileComponent } from "../record/components/UploadFileComponent";
 import { TextsDisplay } from "../languages/TextsDisplay";
 import { useBasePage } from "../hooks/useBasePage";
 import '../index.css';
+import { ModalNames } from "../components/ModalNames";
 
 export const BasePage = () => {
   const { Header } = Layout;
@@ -24,13 +25,17 @@ export const BasePage = () => {
   const { TextArea } = Input;
 
   const {
+    modal,
     activeButton,
     projectName,
     transcription,
+    speakersCount,
+    setSpeakersCount,
     setActiveButton,
     setTranscription,
     copyToClipboard,
-    downloadTranstiption
+    downloadTranstiption,
+    setModal
   } = useBasePage();
 
   const {
@@ -79,7 +84,7 @@ export const BasePage = () => {
         </Row>
 
         <div className="lg:hidden">
-          <Row>
+          <Row className="flex justify-center items-center">
             <Space className="p-1 bg-gray-200 rounded-lg" direction="horizontal">
               <Button
                 className={activeButton === "upload" ? activeStyle : inactiveStyle}
@@ -94,14 +99,30 @@ export const BasePage = () => {
                 {recordText}
               </Button>
             </Space>
+
+            {speakersCount > 0 && (
+              <Button className="mt-2" onClick={() => setModal(true)}>
+                Asignar nombres ({speakersCount} personas)
+              </Button>
+            )}
           </Row>
 
           <Row gutter={7} className="block mt-2 lg:flex lg:justify-center lg:h-400">
             <Col className="lg:w-1/2" style={{ backgroundColor: "#F3F4F6" }}>
               {activeButton === "upload" ? (
-                <UploadFileComponent setTranscription={setTranscription} language={language} textUpload={upload} />
+                <UploadFileComponent
+                  setSpeakersCount={setSpeakersCount}
+                  setTranscription={setTranscription}
+                  language={language}
+                  textUpload={upload}
+                />
               ) : (
-                <RecordComponents setTranscription={setTranscription} language={language} textRecord={record} />
+                <RecordComponents
+                  setSpeakersCount={setSpeakersCount}
+                  setTranscription={setTranscription}
+                  language={language}
+                  textRecord={record}
+                />
               )}
             </Col>
 
@@ -137,7 +158,7 @@ export const BasePage = () => {
         </Row>
 
         <div className="hidden lg:block">
-          <Row>
+          <Row className="flex justify-between items-center">
             <Space className="p-1 bg-gray-200 rounded-lg" direction="horizontal">
               <Button
                 className={activeButton === "upload" ? activeStyle : inactiveStyle}
@@ -152,14 +173,30 @@ export const BasePage = () => {
                 {recordText}
               </Button>
             </Space>
+
+            {speakersCount > 0 && (
+              <Button onClick={() => setModal(true)}>
+                Asignar nombres ({speakersCount} personas)
+              </Button>
+            )}
           </Row>
 
           <Row gutter={7} className="block mt-2 lg:flex lg:justify-center lg:h-400">
             <Col className="lg:w-1/2" style={{ backgroundColor: "#F3F4F6" }}>
               {activeButton === "upload" ? (
-                <UploadFileComponent setTranscription={setTranscription} language={language} textUpload={upload} />
+                <UploadFileComponent
+                  setSpeakersCount={setSpeakersCount}
+                  setTranscription={setTranscription}
+                  language={language}
+                  textUpload={upload}
+                />
               ) : (
-                <RecordComponents setTranscription={setTranscription} language={language} textRecord={record} />
+                <RecordComponents
+                  setSpeakersCount={setSpeakersCount}
+                  setTranscription={setTranscription}
+                  language={language}
+                  textRecord={record}
+                />
               )}
             </Col>
 
@@ -180,12 +217,24 @@ export const BasePage = () => {
                     <p className="ml-2 lg:hidden">{language === "es" ? "Descargar" : "Download"}</p>
                   </Button>
                 </Popover>
+
               </Space>
 
             </Col>
           </Row>
         </div>
-      </Space >
+      </Space>
+
+      {
+        modal &&
+        <ModalNames
+          open={modal}
+          setModal={setModal}
+          transcription={transcription}
+          setTranscription={setTranscription}
+          speakersCount={speakersCount}
+        />
+      }
     </>
   );
 };
