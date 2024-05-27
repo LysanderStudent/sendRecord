@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export const useModalNames = (speakersCount, transcription, setTranscription, setModal) => {
+export const useModalNames = (speakersCount, transcription, setTranscription, setModal, form) => {
     const [names, setNames] = useState([]);
     const [index, setIndex] = useState(0);
     const [phraseCurrent, setPhraseCurrent] = useState("");
@@ -32,6 +32,8 @@ export const useModalNames = (speakersCount, transcription, setTranscription, se
 
             setIndex(index + 1);
         }
+
+        form.resetFields(); 
     }
 
     const generateLetters = () => {

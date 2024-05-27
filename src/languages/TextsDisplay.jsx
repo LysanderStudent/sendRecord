@@ -9,6 +9,10 @@ export const TextsDisplay = (projectName) => {
   const [headerText, setHeaderText] = useState();
   const [uploadText, setUploadText] = useState();
   const [recordText, setRecordText] = useState();
+  const [whoIsText, setWhoIsText] = useState();
+  const [nextText, setNextText] = useState();
+  const [finishText, setFinishText] = useState();
+  const [assignNames, setAssignNames] = useState();
   const [language, setLanguage] = useState("es");
 
   useEffect(() => {
@@ -16,7 +20,7 @@ export const TextsDisplay = (projectName) => {
   }, [language]);
 
   const changeTextLanguage = () => {
-    let first, second, third, headerText, uploadText, recordText;
+    let first, second, third, headerText, uploadText, recordText, whoIsText, nextText, finishText, assignNames;
 
     const record = {
       description: "",
@@ -60,6 +64,11 @@ export const TextsDisplay = (projectName) => {
       uploadText = "Subir Grabación";
       recordText = "Crear Grabación";
 
+      assignNames = "Asignar nombres";
+      whoIsText = "¿Quién dice esta frase?";
+      nextText = "Siguiente";
+      finishText = "Finalizar";
+
       record.description =
         "Haz clic aquí para comenzar a grabar audio directamente desde tu dispositivo. Esta opción activará el micrófono de tu dispositivo para que puedas empezar a grabar.";
       record.sendRecord = "ENVIAR GRABACION";
@@ -96,6 +105,11 @@ export const TextsDisplay = (projectName) => {
       uploadText = "Upload Audio";
       recordText = "Record Audio";
 
+      assignNames = "Assign names";
+      whoIsText = "Who says this phrase?";
+      nextText = "Next";
+      finishText = "Finish";
+
       record.description =
         "Click here to start recording audio directly from your device. This option will activate your device's microphone so you can begin recording.";
       record.sendRecord = "SEND RECORDING";
@@ -114,6 +128,10 @@ export const TextsDisplay = (projectName) => {
     setFirstParagraph(first);
     setSecondParagraph(second);
     setThirdParagraph(third);
+    setAssignNames(assignNames);
+    setWhoIsText(whoIsText);
+    setNextText(nextText);
+    setFinishText(finishText);
     setRecord(record);
     setUpload(upload);
   };
@@ -125,6 +143,10 @@ export const TextsDisplay = (projectName) => {
     firstParagraph,
     secondParagraph,
     thirdParagraph,
+    assignNames,
+    whoIsText,
+    nextText,
+    finishText,
     record,
     upload,
     language,

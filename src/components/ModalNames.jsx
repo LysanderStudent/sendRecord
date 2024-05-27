@@ -8,23 +8,32 @@ export const ModalNames = ({
     transcription,
     speakersCount,
     setTranscription,
-    setModal
+    setModal,
+    whoIsText,
+    finishText,
+    nextText
 }) => {
+    const [form] = Form.useForm();
+
     const {
         index,
         speakerCurrent,
         phraseCurrent,
-        nextPhrase
-    } = useModalNames(speakersCount, transcription, setTranscription, setModal);
+        nextPhrase,
+    } = useModalNames(speakersCount, transcription, setTranscription, setModal, form);
 
     const { Text, Title } = Typography;
 
 
     return (
-        <Modal open={open} footer={null}>
+        <Modal
+            open={open}
+            footer={null}
+            onCancel={() => setModal(false)}
+        >
             <p>{speakerCurrent}</p>
-            <Form onFinish={nextPhrase}>
-                <Title>¿Quien dice esta frase?</Title>
+            <Form form={form} onFinish={nextPhrase}>
+                <Title>{whoIsText}</Title>
                 <Text>{phraseCurrent}</Text>
 
                 <Form.Item className='my-1' name="nameSpeaker">
@@ -33,7 +42,7 @@ export const ModalNames = ({
 
                 <Form.Item className='flex justify-end'>
                     <Button type="primary" htmlType="submit">
-                        {index < speakersCount - 1 ? 'Next' : 'Finish'}
+                        {index < speakersCount - 1 ? nextText : finishText}
                     </Button>
                 </Form.Item>
 
@@ -48,5 +57,8 @@ ModalNames.propTypes = {
     transcription: PropTypes.string.isRequired,
     speakersCount: PropTypes.number.isRequired,
     setTranscription: PropTypes.func.isRequired,
-    setModal: PropTypes.func.isRequired
+    setModal: PropTypes.func.isRequired,
+    whoIsText: PropTypes.string.isRequired,
+    finishText: PropTypes.string.isRequired,
+    nextText: PropTypes.string.isRequired
 }

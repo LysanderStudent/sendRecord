@@ -49,6 +49,10 @@ export const BasePage = () => {
     upload,
     language,
     setLanguage,
+    whoIsText,
+    finishText,
+    nextText,
+    assignNames
   } = TextsDisplay(projectName);
 
   return (
@@ -102,7 +106,7 @@ export const BasePage = () => {
 
             {speakersCount > 0 && (
               <Button className="mt-2" onClick={() => setModal(true)}>
-                Asignar nombres ({speakersCount} personas)
+                {`${assignNames} (${speakersCount})`}
               </Button>
             )}
           </Row>
@@ -176,7 +180,7 @@ export const BasePage = () => {
 
             {speakersCount > 0 && (
               <Button onClick={() => setModal(true)}>
-                Asignar nombres ({speakersCount} personas)
+                {`${assignNames} (${speakersCount})`}
               </Button>
             )}
           </Row>
@@ -233,6 +237,9 @@ export const BasePage = () => {
           transcription={transcription}
           setTranscription={setTranscription}
           speakersCount={speakersCount}
+          whoIsText={whoIsText}
+          finishText={finishText}
+          nextText={nextText}
         />
       }
     </>
