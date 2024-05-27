@@ -23,8 +23,6 @@ const buttonOptionStyle = "flex items-center lg:px-8 lg:py-5 m-0 border-0 transi
 export const activeStyle = `${buttonOptionStyle} bg-white text-black font-bold`;
 export const inactiveStyle = `${buttonOptionStyle} bg-gray-200 text-[#666666]`;
 
-export const textAreaTrancriptionStyle = "mt-2 lg:mt-0 lg:flex justify-center items-start";
-
 export const textAreaStyle = {
   resize: "none",
   height: 400

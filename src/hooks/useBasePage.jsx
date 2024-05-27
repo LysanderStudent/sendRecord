@@ -6,6 +6,7 @@ export const useBasePage = () => {
     const [transcription, setTranscription] = useState("");
     const [speakersCount, setSpeakersCount] = useState(0);
     const [activeButton, setActiveButton] = useState("upload");
+    const [loading, setLoading] = useState(false);
     const [modal, setModal] = useState(false);
 
     useEffect(() => {
@@ -36,6 +37,8 @@ export const useBasePage = () => {
         transcription,
         activeButton,
         speakersCount,
+        loading,
+        setLoading,
         setSpeakersCount,
         setTranscription,
         setActiveButton,

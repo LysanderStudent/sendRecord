@@ -3,8 +3,9 @@ import io from "socket.io-client";
 
 let socket;
 
-const setupSocketListeners = (setTranscription, setSpeakersCount) => {
+const setupSocketListeners = (setTranscription, setSpeakersCount, setLoading) => {
   socket.on("uploadFileError", (data) => {
+    setLoading(false);
     message.error(data.message);
   });
 
@@ -23,18 +24,20 @@ const setupSocketListeners = (setTranscription, setSpeakersCount) => {
 
     setTranscription(text);
     setSpeakersCount(speakersCount);
+    setLoading(false);
   });
 
   socket.on("fileUploaded", (data) => {
     message.success(data.message);
+    setLoading(true);
     socket.emit("transcript", { language: data.language });
   });
 };
 
-export const getSocket = (setTranscription, setSpeakersCount) => {
+export const getSocket = (setTranscription, setSpeakersCount, setLoading) => {
   if (!socket) {
     socket = io(import.meta.env.VITE_SOCKET_URL);
-    setupSocketListeners(setTranscription, setSpeakersCount);
+    setupSocketListeners(setTranscription, setSpeakersCount, setLoading);
   }
   return socket;
 };

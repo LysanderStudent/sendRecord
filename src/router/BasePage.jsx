@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Col, Input, Layout, Popover, Row, Space, Typography } from "antd";
+import { Button, Col, Input, Layout, Popover, Row, Space, Typography, Spin } from "antd";
 import { FiCopy, FiDownload } from "react-icons/fi";
 
 import {
@@ -10,7 +10,6 @@ import {
   langugeSelectedStyle,
   removeStylesButtonAntd,
   textAreaStyle,
-  textAreaTrancriptionStyle,
 } from "../ui/css/styles";
 import { RecordComponents } from "../record/components/RecordComponents";
 import { UploadFileComponent } from "../record/components/UploadFileComponent";
@@ -30,6 +29,8 @@ export const BasePage = () => {
     projectName,
     transcription,
     speakersCount,
+    loading,
+    setLoading,
     setSpeakersCount,
     setActiveButton,
     setTranscription,
@@ -119,6 +120,7 @@ export const BasePage = () => {
                   setTranscription={setTranscription}
                   language={language}
                   textUpload={upload}
+                  setLoading={setLoading}
                 />
               ) : (
                 <RecordComponents
@@ -126,12 +128,25 @@ export const BasePage = () => {
                   setTranscription={setTranscription}
                   language={language}
                   textRecord={record}
+                  setLoading={setLoading}
                 />
               )}
             </Col>
 
-            <Col className={`lg:w-1/2 ${textAreaTrancriptionStyle}`}>
-              <TextArea value={transcription} readOnly style={textAreaStyle} />
+            <Col className="lg:w-1/2 mt-2 lg:mt-0 lg:flex justify-center items-start">
+              <div style={{ position: 'relative', width: '100%' }}>
+                <Spin
+                  size="large"
+                  spinning={loading}
+                  style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+                >
+                  <TextArea
+                    readOnly
+                    value={transcription}
+                    style={textAreaStyle}
+                  />
+                </Spin>
+              </div>
 
               <Space>
                 <Popover content={language === "es" ? "Copiar" : "Copy"}>
@@ -193,6 +208,7 @@ export const BasePage = () => {
                   setTranscription={setTranscription}
                   language={language}
                   textUpload={upload}
+                  setLoading={setLoading}
                 />
               ) : (
                 <RecordComponents
@@ -200,12 +216,26 @@ export const BasePage = () => {
                   setTranscription={setTranscription}
                   language={language}
                   textRecord={record}
+                  setLoading={setLoading}
                 />
               )}
             </Col>
 
-            <Col className={`lg:w-1/2 ${textAreaTrancriptionStyle}`}>
-              <TextArea value={transcription} readOnly style={textAreaStyle} />
+            <Col className="lg:w-1/2 mt-2 lg:mt-0 lg:flex justify-center items-start">
+
+              <div style={{ position: 'relative', width: '100%' }}>
+                <Spin
+                  size="large"
+                  spinning={loading}
+                  style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+                >
+                  <TextArea
+                    readOnly
+                    value={transcription}
+                    style={textAreaStyle}
+                  />
+                </Spin>
+              </div>
 
               <Space>
                 <Popover content={language === "es" ? "Copiar" : "Copy"}>

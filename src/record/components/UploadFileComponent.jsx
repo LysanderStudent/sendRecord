@@ -6,11 +6,22 @@ import PropTypes from 'prop-types';
 import { draggerStyle } from '../../ui/css/styles';
 import { useUpload } from "../hooks/useUpload";
 
-export const UploadFileComponent = ({ textUpload, language, setTranscription, setSpeakersCount }) => {
+export const UploadFileComponent = ({
+  textUpload,
+  language,
+  setTranscription,
+  setSpeakersCount,
+  setLoading
+}) => {
   const { Title, Text } = Typography;
   const { Dragger } = Upload;
 
-  const { progress, onChange, handleAction } = useUpload(language, setTranscription, setSpeakersCount);
+  const { progress, onChange, handleAction } = useUpload(
+    language,
+    setTranscription,
+    setSpeakersCount,
+    setLoading
+  );
 
   return (
     <Dragger
@@ -35,5 +46,6 @@ export const UploadFileComponent = ({ textUpload, language, setTranscription, se
 UploadFileComponent.propTypes = {
   textUpload: PropTypes.object,
   language: PropTypes.string.isRequired,
-  setTranscription: PropTypes.func.isRequired
+  setTranscription: PropTypes.func.isRequired,
+  setLoading: PropTypes.func.isRequired
 };

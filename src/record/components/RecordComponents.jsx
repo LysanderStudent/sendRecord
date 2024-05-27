@@ -9,10 +9,22 @@ import {
   textRecordStyle
 } from '../../ui/css/styles';
 
-export const RecordComponents = ({ textRecord, language, setTranscription, setSpeakersCount }) => {
+export const RecordComponents = ({
+  textRecord,
+  language,
+  setTranscription,
+  setSpeakersCount,
+  setLoading
+}) => {
   const { Text } = Typography;
   const { status, message, mediaBlobUrl, handleActionRecord, sendAudio } =
-    useRecord(textRecord?.status, language, setTranscription, setSpeakersCount);
+    useRecord(
+      textRecord?.status,
+      language,
+      setTranscription,
+      setSpeakersCount,
+      setLoading
+    );
 
   return (
     <Card
@@ -54,5 +66,6 @@ export const RecordComponents = ({ textRecord, language, setTranscription, setSp
 RecordComponents.propTypes = {
   textRecord: PropTypes.object,
   language: PropTypes.string.isRequired,
-  setTranscription: PropTypes.func.isRequired
+  setTranscription: PropTypes.func.isRequired,
+  setLoading: PropTypes.func.isRequired
 }
