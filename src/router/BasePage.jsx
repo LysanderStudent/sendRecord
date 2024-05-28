@@ -30,6 +30,7 @@ export const BasePage = () => {
     transcription,
     speakersCount,
     loading,
+    setSaveRecord,
     setLoading,
     setSpeakersCount,
     setActiveButton,
@@ -88,6 +89,7 @@ export const BasePage = () => {
           <Text>{firstParagraph}</Text>
         </Row>
 
+        {/* mobile */}
         <div className="lg:hidden">
           <Row className="flex justify-center items-center">
             <Space className="p-1 bg-gray-200 rounded-lg" direction="horizontal">
@@ -121,6 +123,7 @@ export const BasePage = () => {
                   language={language}
                   textUpload={upload}
                   setLoading={setLoading}
+                  setSaveRecord={setSaveRecord}
                 />
               ) : (
                 <RecordComponents
@@ -129,6 +132,7 @@ export const BasePage = () => {
                   language={language}
                   textRecord={record}
                   setLoading={setLoading}
+                  setSaveRecord={setSaveRecord}
                 />
               )}
             </Col>
@@ -176,6 +180,7 @@ export const BasePage = () => {
           <Text>{thirdParagraph}</Text>
         </Row>
 
+        {/* desktop */}
         <div className="hidden lg:block">
           <Row className="flex justify-between items-center">
             <Space className="p-1 bg-gray-200 rounded-lg" direction="horizontal">
@@ -209,6 +214,7 @@ export const BasePage = () => {
                   language={language}
                   textUpload={upload}
                   setLoading={setLoading}
+                  setSaveRecord={setSaveRecord}
                 />
               ) : (
                 <RecordComponents
@@ -217,6 +223,7 @@ export const BasePage = () => {
                   language={language}
                   textRecord={record}
                   setLoading={setLoading}
+                  setSaveRecord={setSaveRecord}
                 />
               )}
             </Col>

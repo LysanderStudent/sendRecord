@@ -7,7 +7,20 @@ export const useBasePage = () => {
     const [speakersCount, setSpeakersCount] = useState(0);
     const [activeButton, setActiveButton] = useState("upload");
     const [loading, setLoading] = useState(false);
+    const [saveRecord, setSaveRecord] = useState(false);
     const [modal, setModal] = useState(false);
+
+    useEffect(() => {
+        if(saveRecord) {
+            message.open({
+                type: 'loading',
+                content: 'Guardando grabación...',
+                key: 'uploading',
+            });
+        } else {
+            message.destroy('uploading');
+        }
+    }, [saveRecord]);
 
     useEffect(() => {
         const test = async () => {
@@ -44,6 +57,7 @@ export const useBasePage = () => {
         setActiveButton,
         copyToClipboard,
         downloadTranstiption,
-        setModal
+        setModal,
+        setSaveRecord,
     }
 }

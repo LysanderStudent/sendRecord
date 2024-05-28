@@ -11,7 +11,8 @@ export const UploadFileComponent = ({
   language,
   setTranscription,
   setSpeakersCount,
-  setLoading
+  setLoading,
+  setSaveRecord
 }) => {
   const { Title, Text } = Typography;
   const { Dragger } = Upload;
@@ -20,7 +21,8 @@ export const UploadFileComponent = ({
     language,
     setTranscription,
     setSpeakersCount,
-    setLoading
+    setLoading,
+    setSaveRecord
   );
 
   return (
@@ -47,5 +49,6 @@ UploadFileComponent.propTypes = {
   textUpload: PropTypes.object,
   language: PropTypes.string.isRequired,
   setTranscription: PropTypes.func.isRequired,
-  setLoading: PropTypes.func.isRequired
+  setLoading: PropTypes.func.isRequired,
+  setSaveRecord: PropTypes.func.isRequired
 };

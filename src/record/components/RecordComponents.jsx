@@ -14,7 +14,8 @@ export const RecordComponents = ({
   language,
   setTranscription,
   setSpeakersCount,
-  setLoading
+  setLoading,
+  setSaveRecord
 }) => {
   const { Text } = Typography;
   const { status, message, mediaBlobUrl, handleActionRecord, sendAudio } =
@@ -23,7 +24,8 @@ export const RecordComponents = ({
       language,
       setTranscription,
       setSpeakersCount,
-      setLoading
+      setLoading,
+      setSaveRecord
     );
 
   return (
@@ -67,5 +69,6 @@ RecordComponents.propTypes = {
   textRecord: PropTypes.object,
   language: PropTypes.string.isRequired,
   setTranscription: PropTypes.func.isRequired,
-  setLoading: PropTypes.func.isRequired
+  setLoading: PropTypes.func.isRequired,
+  setSaveRecord: PropTypes.func.isRequired
 }

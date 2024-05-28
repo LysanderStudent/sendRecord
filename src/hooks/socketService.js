@@ -3,7 +3,7 @@ import io from "socket.io-client";
 
 let socket;
 
-const setupSocketListeners = (setTranscription, setSpeakersCount, setLoading) => {
+  const setupSocketListeners = (setTranscription, setSpeakersCount, setLoading, setSaveRecord) => {
   socket.on("uploadFileError", (data) => {
     setLoading(false);
     message.error(data.message);
@@ -30,14 +30,15 @@ const setupSocketListeners = (setTranscription, setSpeakersCount, setLoading) =>
   socket.on("fileUploaded", (data) => {
     message.success(data.message);
     setLoading(true);
+    setSaveRecord(false);
     socket.emit("transcript", { language: data.language });
   });
 };
 
-export const getSocket = (setTranscription, setSpeakersCount, setLoading) => {
+export const getSocket = (setTranscription, setSpeakersCount, setLoading, setSaveRecord) => {
   if (!socket) {
     socket = io(import.meta.env.VITE_SOCKET_URL);
-    setupSocketListeners(setTranscription, setSpeakersCount, setLoading);
+    setupSocketListeners(setTranscription, setSpeakersCount, setLoading, setSaveRecord);
   }
   return socket;
 };

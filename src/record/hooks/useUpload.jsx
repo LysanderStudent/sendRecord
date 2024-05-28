@@ -6,10 +6,11 @@ export const useUpload = (
   language,
   setTranscription,
   setSpeakersCount,
-  setLoading
+  setLoading,
+  setSaveRecord
 ) => {
   const [progress, setProgress] = useState(0);
-  const socket = getSocket(setTranscription, setSpeakersCount, setLoading);
+  const socket = getSocket(setTranscription, setSpeakersCount, setLoading, setSaveRecord);
 
   const onChange = (info) => {
     const { status } = info.file;
@@ -35,6 +36,7 @@ export const useUpload = (
 
     reader.onload = (e) => {
       setProgress(0);
+      setSaveRecord(true);
       socket.emit("uploadFileToServer", { file: e.target.result, language });
     };
 

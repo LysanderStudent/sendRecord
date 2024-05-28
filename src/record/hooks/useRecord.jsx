@@ -7,9 +7,10 @@ export const useRecord = (
   language,
   setTranscription,
   setSpeakersCount,
-  setLoading
+  setLoading,
+  setSaveRecord
 ) => {
-  const socket = getSocket(setTranscription, setSpeakersCount, setLoading);
+  const socket = getSocket(setTranscription, setSpeakersCount, setLoading, setSaveRecord);
   const [message, setMessage] = useState("INICIAR GRABACION");
 
   const { status, mediaBlobUrl, startRecording, stopRecording } =
@@ -46,7 +47,10 @@ export const useRecord = (
   const sendAudio = async () => {
     await fetch(mediaBlobUrl)
       .then((res) => res.blob())
-      .then((blob) => socket.emit("uploadFileToServer", { file: blob, language }))
+      .then((blob) => {
+        setSaveRecord(true);
+        socket.emit("uploadFileToServer", { file: blob, language })
+      })
       .catch((err) => console.error({ err }));
   };
 
