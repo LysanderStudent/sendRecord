@@ -30,6 +30,8 @@ export const BasePage = () => {
     transcription,
     speakersCount,
     loading,
+    names,
+    setNames,
     setSaveRecord,
     setLoading,
     setSpeakersCount,
@@ -269,6 +271,8 @@ export const BasePage = () => {
       {
         modal &&
         <ModalNames
+          names={names}
+          setNames={setNames}
           open={modal}
           setModal={setModal}
           transcription={transcription}
