@@ -1,39 +1,44 @@
 import { useEffect, useState } from 'react';
 
-export const useModalNames = (speakersCount, transcription, setTranscription, setModal, form) => {
-    const [names, setNames] = useState([]);
+export const useModalNames = (names, setNames, speakersCount, transcription, setTranscription, setModal, form) => {
     const [index, setIndex] = useState(0);
     const [phraseCurrent, setPhraseCurrent] = useState("");
 
     useEffect(() => {
-        const firstPhrase = transcription.split('\n')[0];
-        const letter = generateLetters()[index];
-        setPhraseCurrent(firstPhrase.substring(firstPhrase.indexOf(letter) + 2));
-    }, [])
-
-    useEffect(() => {
-        if (index === speakersCount) {
+        if (index < speakersCount) {
+            setPhraseCurrent(removeSpakerLabel());
+        } else {
             changeNamesSpeakers();
         }
     }, [index]);
 
-    const nextPhrase = (values) => {
-        if (index < speakersCount) {
-            const updatedNames = [...names, values.nameSpeaker];
-            setNames(updatedNames);
+    const removeSpakerLabel = () => {
+        let justPhrase = "";
 
-            if (index < speakersCount - 1) {
-                const letter = generateLetters()[index + 1];
-                const phrase = transcription.split(`Speaker ${letter}: `)[1];
-                const justPhrase = phrase.slice(0, phrase.indexOf('\n'))
-
-                setPhraseCurrent(justPhrase);
-            }
-
-            setIndex(index + 1);
+        if (names.length === speakersCount) {
+            console.log(names[index])
+            justPhrase = names[index].slice(names[index] + 2);
+        } else {
+            const letter = generateLetters()[index];
+            const phrase = transcription.split(`Speaker ${letter}: `)[1];
+            justPhrase = phrase.slice(0, phrase.indexOf('\n'))
         }
 
-        form.resetFields(); 
+        return justPhrase;
+    }
+
+    const nextPhrase = (values) => {
+        if (names.length === speakersCount) {
+            const updatedNames = [...names];
+            updatedNames[index] = values.nameSpeaker;
+            setNames(updatedNames);
+        } else {
+            const updatedNames = [...names, values.nameSpeaker];
+            setNames(updatedNames);
+        }
+
+        setIndex(index + 1);
+        form.resetFields();
     }
 
     const generateLetters = () => {

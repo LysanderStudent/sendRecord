@@ -4,6 +4,8 @@ import { useModalNames } from '../hooks/useModalNames';
 import { Button, Form, Input, Modal, Typography } from 'antd';
 
 export const ModalNames = ({
+    names,
+    setNames,
     open,
     transcription,
     speakersCount,
@@ -20,7 +22,7 @@ export const ModalNames = ({
         speakerCurrent,
         phraseCurrent,
         nextPhrase,
-    } = useModalNames(speakersCount, transcription, setTranscription, setModal, form);
+    } = useModalNames(names, setNames, speakersCount, transcription, setTranscription, setModal, form);
 
     const { Text, Title } = Typography;
 
@@ -53,6 +55,8 @@ export const ModalNames = ({
 }
 
 ModalNames.propTypes = {
+    names: PropTypes.array.isRequired,
+    setNames: PropTypes.func.isRequired,
     open: PropTypes.bool.isRequired,
     transcription: PropTypes.string.isRequired,
     speakersCount: PropTypes.number.isRequired,
