@@ -73,7 +73,7 @@ export const TextsDisplay = (projectName) => {
         </>
       );
 
-      third = `Con ${projectName}, obtén transcripciones precisas y de calidad para tus podcasts, facilitando la edición, búsqueda y accesibilidad de tu contenido auditivo. Únete a nuestra comunidad de creadores de podcasts hoy mismo y lleva tus proyectos auditivos al siguiente nivel con ${projectName}.`;
+      third = `Con ${projectName}, obtén transcripciones precisas y de calidad, facilitando la edición, búsqueda y accesibilidad de tu contenido auditivo. Únete a nuestra comunidad hoy mismo y lleva tus proyectos auditivos al siguiente nivel con ${projectName}.`;
 
       uploadText = "Subir Grabación";
       recordText = "Crear Grabación";
@@ -128,7 +128,7 @@ export const TextsDisplay = (projectName) => {
         </>
       );
 
-      third = `With ${projectName}, get accurate and quality transcriptions for your podcasts, making editing, searching, and accessing your audio content easier. Join our community of podcast creators today and take your audio projects to the next level with ${projectName}.`;
+      third = `With ${projectName}, get accurate and quality transcriptions for your making editing, searching, and accessing your audio content easier. Join our community today and take your audio projects to the next level with ${projectName}.`;
 
       uploadText = "Upload Audio";
       recordText = "Record Audio";
