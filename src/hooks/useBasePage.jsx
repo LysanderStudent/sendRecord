@@ -9,6 +9,7 @@ export const useBasePage = () => {
     const [loading, setLoading] = useState(false);
     const [saveRecord, setSaveRecord] = useState(false);
     const [modal, setModal] = useState(false);
+    const [names, setNames] = useState([]);
 
     useEffect(() => {
         if(saveRecord) {
@@ -51,6 +52,8 @@ export const useBasePage = () => {
         activeButton,
         speakersCount,
         loading,
+        names,
+        setNames,
         setLoading,
         setSpeakersCount,
         setTranscription,
