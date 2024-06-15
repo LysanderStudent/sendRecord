@@ -67,7 +67,9 @@ export const BasePage = () => {
         className={`h-auto lg:h-[220] bg-[${colorTheme}] flex justify-center items-center text-center`}
       >
         <Space direction="vertical" align="center">
-          <Title style={{ color: "white" }} className="font-bold">{projectName}</Title>
+          <div className="w-[80%] md:w-full">
+            <Title style={{ color: "white" }} className="font-bold">{projectName}</Title>
+          </div>
 
           <Text className="text-white">{headerText}</Text>
 
