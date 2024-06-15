@@ -5,7 +5,9 @@ import { Button, Form, Input, Modal, Typography } from 'antd';
 
 export const ModalNames = ({
     names,
+    reassignNames,
     setNames,
+    setReassignNames,
     open,
     transcription,
     speakersCount,
@@ -22,7 +24,7 @@ export const ModalNames = ({
         speakerCurrent,
         phraseCurrent,
         nextPhrase,
-    } = useModalNames(names, setNames, speakersCount, transcription, setTranscription, setModal, form);
+    } = useModalNames({ names, reassignNames, setNames, setReassignNames, speakersCount, transcription, setTranscription, setModal, form });
 
     const { Text, Title } = Typography;
 
@@ -56,7 +58,9 @@ export const ModalNames = ({
 
 ModalNames.propTypes = {
     names: PropTypes.array.isRequired,
+    reassignNames: PropTypes.array.isRequired,
     setNames: PropTypes.func.isRequired,
+    setReassignNames: PropTypes.func.isRequired,
     open: PropTypes.bool.isRequired,
     transcription: PropTypes.string.isRequired,
     speakersCount: PropTypes.number.isRequired,

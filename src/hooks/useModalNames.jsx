@@ -1,8 +1,24 @@
 import { useEffect, useState } from 'react';
 
-export const useModalNames = (names, setNames, speakersCount, transcription, setTranscription, setModal, form) => {
+export const useModalNames = ({
+    names,
+    reassignNames,
+    setNames,
+    setReassignNames,
+    speakersCount,
+    transcription,
+    setTranscription,
+    setModal,
+    form
+}) => {
     const [index, setIndex] = useState(0);
     const [phraseCurrent, setPhraseCurrent] = useState("");
+
+    useEffect(() => {
+        if(names.length === speakersCount) {
+            setReassignNames(names);
+        }
+    }, []);
 
     useEffect(() => {
         if (index < speakersCount) {
@@ -13,25 +29,23 @@ export const useModalNames = (names, setNames, speakersCount, transcription, set
     }, [index]);
 
     const removeSpakerLabel = () => {
-        let justPhrase = "";
+        let phrase = "";
 
         if (names.length === speakersCount) {
-            console.log(names[index])
-            justPhrase = names[index].slice(names[index] + 2);
+            phrase = transcription.split(`${names[index]}: `)[1];
         } else {
             const letter = generateLetters()[index];
-            const phrase = transcription.split(`Speaker ${letter}: `)[1];
-            justPhrase = phrase.slice(0, phrase.indexOf('\n'))
+            phrase = transcription.split(`Speaker ${letter}: `)[1];
         }
-
-        return justPhrase;
+            
+        return phrase.slice(0, phrase.indexOf('\n'));
     }
 
     const nextPhrase = (values) => {
         if (names.length === speakersCount) {
-            const updatedNames = [...names];
+            const updatedNames = [...reassignNames];
             updatedNames[index] = values.nameSpeaker;
-            setNames(updatedNames);
+            setReassignNames(updatedNames);
         } else {
             const updatedNames = [...names, values.nameSpeaker];
             setNames(updatedNames);
@@ -55,9 +69,19 @@ export const useModalNames = (names, setNames, speakersCount, transcription, set
 
             let t = transcription;
 
-            for (let i = 0; i < speakersCount; i++) {
-                const regex = new RegExp(`Speaker ${letter[i]}`, 'g');
-                t = t.replace(regex, `${names[i]}`);
+            if(reassignNames.length > 0) {
+                for (let i = 0; i < speakersCount; i++) {
+                    const regex = new RegExp(names[i], 'g');
+                    t = t.replace(regex, reassignNames[i]);
+                }
+
+                setNames(reassignNames);
+                setReassignNames([]);
+            } else {
+                for (let i = 0; i < speakersCount; i++) {
+                    const regex = new RegExp(`Speaker ${letter[i]}`, 'g');
+                    t = t.replace(regex, names[i]);
+                }
             }
 
             setTranscription(t)
